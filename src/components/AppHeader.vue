@@ -6,9 +6,15 @@
       <div class="container mx-auto">
         <nav class="flex justify-between">
           <ul class="flex w-1/5 justify-between">
-            <li class="cursor-pointer hover:text-cyan-500">Home</li>
-            <li class="cursor-pointer hover:text-cyan-500">Records</li>
-            <li class="cursor-pointer hover:text-cyan-500">Play</li>
+            <li class="cursor-pointer hover:text-cyan-500">
+              <NuxtLink to="/">Home</NuxtLink>
+            </li>
+            <li class="cursor-pointer hover:text-cyan-500">
+              <NuxtLink to="/quiz">Play</NuxtLink>
+            </li>
+            <li class="cursor-pointer hover:text-cyan-500">
+              <NuxtLink to="/records">Records</NuxtLink>
+            </li>
           </ul>
           logo
         </nav>
@@ -16,5 +22,3 @@
     </header>
   </div>
 </template>
-
-<style scoped></style>
