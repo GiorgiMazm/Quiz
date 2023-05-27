@@ -1,4 +1,10 @@
 export default class Question {
+  private _options: string[];
+  private _title: string;
+  private _image: string;
+  private _correctOption: string;
+  private readonly _id: number;
+
   constructor(
     options: string[],
     title: string,
@@ -46,12 +52,6 @@ export default class Question {
   set options(value: string[]) {
     this._options = value;
   }
-
-  private _options: string[];
-  private _title: string;
-  private _image: string;
-  private _correctOption: string;
-  private readonly _id: number;
 
   isAnswerCorrect(answer: string) {
     return this._correctOption === answer;

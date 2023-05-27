@@ -19,7 +19,9 @@ const questionList: Question[] = [
     2
   ),
 ];
-const game = ref(new Game("the best name", questionList));
+const game = ref(new Game("the best name", questionList, 1));
+const route = useRoute();
+const pageLink = `/quiz-${route.params.id}/question-1`;
 </script>
 
 <template>
@@ -31,7 +33,7 @@ const game = ref(new Game("the best name", questionList));
           <NuxtLink
             v-if="!game.isActive"
             @click="game.startGame()"
-            to="/quiz-1/question-1"
+            :to="pageLink"
             >Start game</NuxtLink
           >
 
