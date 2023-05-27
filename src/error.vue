@@ -15,5 +15,3 @@
     <AppFooter />
   </div>
 </template>
-
-<style scoped></style>

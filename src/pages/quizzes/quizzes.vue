@@ -3,7 +3,7 @@
 <template>
   <div>
     <section>
-      <div class="mx-auto container">records page</div>
+      <div>bla</div>
     </section>
   </div>
 </template>

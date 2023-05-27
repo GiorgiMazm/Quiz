@@ -49,5 +49,3 @@ const game = ref(new Game("the best name", questionList));
     </section>
   </div>
 </template>
-
-<style scoped></style>

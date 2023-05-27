@@ -31,5 +31,3 @@ const route = useRoute();
     </section>
   </div>
 </template>
-
-<style scoped></style>
