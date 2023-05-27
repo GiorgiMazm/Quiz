@@ -1,10 +1,13 @@
 import Question from "~/types/Question";
 
 export default class Game {
-  constructor(questionList: Question[]) {
+  constructor(name: string, questionList: Question[]) {
+    this._name = name;
     this._questionList = questionList;
   }
   private _isActive: boolean = false;
+  private _questionList: Question[];
+  private _name: string;
   startGame() {
     this._isActive = true;
     console.log("The game was started");
@@ -30,8 +33,16 @@ export default class Game {
   set questionList(value: Question[]) {
     this._questionList = value;
   }
-  private _questionList: Question[];
+
   get questionAmount(): number {
     return this._questionList.length;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set name(value: string) {
+    this._name = value;
   }
 }

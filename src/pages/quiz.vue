@@ -19,7 +19,7 @@ const questionList: Question[] = [
     2
   ),
 ];
-const game = ref(new Game(questionList));
+const game = ref(new Game("the best name", questionList));
 </script>
 
 <template>
@@ -27,6 +27,7 @@ const game = ref(new Game(questionList));
     <section>
       <div class="container mx-auto">
         <div class="flex justify-between w-2/5 mx-auto pt-9">
+          <h1 class="text-4xl font-bold">{{ game.name }}</h1>
           <NuxtLink
             v-if="!game.isActive"
             @click="game.startGame()"

@@ -1,4 +1,17 @@
 export default class Question {
+  constructor(
+    options: string[],
+    title: string,
+    image: string,
+    correctOption: string,
+    id: number
+  ) {
+    this._options = options;
+    this._image = image;
+    this._correctOption = correctOption;
+    this._title = title;
+    this._id = id;
+  }
   get title(): string {
     return this._title;
   }
@@ -39,19 +52,6 @@ export default class Question {
   private _image: string;
   private _correctOption: string;
   private readonly _id: number;
-  constructor(
-    options: string[],
-    title: string,
-    image: string,
-    correctOption: string,
-    id: number
-  ) {
-    this._options = options;
-    this._image = image;
-    this._correctOption = correctOption;
-    this._title = title;
-    this._id = id;
-  }
 
   isAnswerCorrect(answer: string) {
     return this._correctOption === answer;
