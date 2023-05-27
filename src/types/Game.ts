@@ -1,17 +1,18 @@
 import Question from "~/types/Question";
 
 export default class Game {
-  constructor(questionAmount: number, questionList: Question[]) {
-    this._questionAmount = questionAmount;
+  constructor(questionList: Question[]) {
     this._questionList = questionList;
   }
   private _isActive: boolean = false;
   startGame() {
     this._isActive = true;
+    console.log("The game was started");
   }
 
   finishGame() {
     this._isActive = false;
+    console.log("The game was finished");
   }
 
   get isActive(): boolean {
@@ -22,14 +23,6 @@ export default class Game {
     this._isActive = value;
   }
 
-  get questionAmount(): number {
-    return this._questionAmount;
-  }
-
-  set questionAmount(value: number) {
-    this._questionAmount = value;
-  }
-
   get questionList(): Question[] {
     return this._questionList;
   }
@@ -37,8 +30,8 @@ export default class Game {
   set questionList(value: Question[]) {
     this._questionList = value;
   }
-
-  private _questionAmount: number;
-
   private _questionList: Question[];
+  get questionAmount(): number {
+    return this._questionList.length;
+  }
 }
