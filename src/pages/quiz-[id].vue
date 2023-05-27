@@ -31,9 +31,10 @@ const game = ref(new Game("the best name", questionList));
           <NuxtLink
             v-if="!game.isActive"
             @click="game.startGame()"
-            to="/quiz/question-1"
+            to="/quiz-1/question-1"
             >Start game</NuxtLink
           >
+
           <button v-if="game.isActive" @click="game.finishGame()">
             End quiz
           </button>
