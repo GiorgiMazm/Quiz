@@ -17,13 +17,15 @@ const isVisible = ref(true);
     <section>
       <div class="container mx-auto">
         <div class="flex justify-between w-2/5 mx-auto pt-9">
-          <button v-if="isVisible" @click="startQuiz">Start quiz</button>
+          <NuxtLink v-if="isVisible" @click="startQuiz" to="/quiz/question-1"
+            >Start game</NuxtLink
+          >
           <button v-if="!isVisible" @click="endQuiz">End quiz</button>
           <button v-if="!isVisible" @click="endQuiz">Next question</button>
           <hr />
         </div>
         <div>
-          <QuestionCard />
+          <NuxtPage />
         </div>
       </div>
     </section>

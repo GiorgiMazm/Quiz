@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps({
+  question: Object,
+});
+</script>
 
 <template>
   <div>
