@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Question from "~/types/Question";
+import Game from "~/types/Game";
 
 const questionList: Question[] = [
   new Question(
@@ -18,15 +19,21 @@ const questionList: Question[] = [
     2
   ),
 ];
+const games = ref([
+  new Game("the best name", questionList, 1),
+  new Game("the worst name", questionList, 2),
+]);
 
 const route = useRoute();
+const game = games.value.find((game) => game.id === 1);
 </script>
 
 <template>
   <div>
     <section>
       <div class="container mx-auto">
-        <QuestionCard :question="questionList[+route.params.id - 1]" />
+        <!--         @ts-ignore -->
+        <QuestionCard :question="game?.questionList[+route.params.id - 1]" />
       </div>
     </section>
   </div>

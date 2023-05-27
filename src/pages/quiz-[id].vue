@@ -19,7 +19,7 @@ const questionList: Question[] = [
     2
   ),
 ];
-const game = ref(new Game("the best name", questionList, 1));
+const game = ref(new Game("the best name", questionList, 3));
 const route = useRoute();
 const pageLink = `/quiz-${route.params.id}/question-1`;
 </script>
