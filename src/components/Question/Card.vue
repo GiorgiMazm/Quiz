@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import Question from "~/types/Question";
+import { UnwrapRef } from "vue/dist/vue";
 
 const props = defineProps({
   question: {
-    type: Question,
+    type: Object as () => UnwrapRef<Question>,
     required: true,
   },
 });

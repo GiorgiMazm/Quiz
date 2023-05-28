@@ -19,8 +19,13 @@ const questionList: Question[] = [
     2
   ),
 ];
-const game = ref(new Game("the best name", questionList, 3));
+const games = ref([
+  new Game("the best name", questionList, 1),
+  new Game("the worst name", questionList, 2),
+]);
+
 const route = useRoute();
+const game = games.value.find((game) => game.id === +route.params.id);
 const pageLink = `/quiz-${route.params.id}/question-1`;
 </script>
 
@@ -29,18 +34,18 @@ const pageLink = `/quiz-${route.params.id}/question-1`;
     <section>
       <div class="container mx-auto">
         <div class="flex justify-between w-2/5 mx-auto pt-9">
-          <h1 class="text-4xl font-bold">{{ game.name }}</h1>
+          <h1 class="text-4xl font-bold">{{ game?.name }}</h1>
           <NuxtLink
-            v-if="!game.isActive"
-            @click="game.startGame()"
+            v-if="!game?.isActive"
+            @click="game?.startGame()"
             :to="pageLink"
             >Start game</NuxtLink
           >
 
-          <button v-if="game.isActive" @click="game.finishGame()">
+          <button v-if="game?.isActive" @click="game?.finishGame()">
             End quiz
           </button>
-          <button v-if="game.isActive" @click="game.finishGame()">
+          <button v-if="game?.isActive" @click="game?.finishGame()">
             Next question
           </button>
           <hr />

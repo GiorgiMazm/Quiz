@@ -25,15 +25,19 @@ const games = ref([
 ]);
 
 const route = useRoute();
-const game = games.value.find((game) => game.id === 1);
+const game = games.value.find((game) => game.id === +route.params.id);
+
+console.log(game);
 </script>
 
 <template>
   <div>
     <section>
       <div class="container mx-auto">
-        <!--         @ts-ignore -->
-        <QuestionCard :question="game?.questionList[+route.params.id - 1]" />
+        <QuestionCard
+          v-if="game"
+          :question="game.questionList[+route.params.questionId - 1]"
+        />
       </div>
     </section>
   </div>
