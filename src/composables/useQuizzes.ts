@@ -9,11 +9,7 @@ export default async () => {
       statusMessage: "Something went wrong with fetching data, try again later",
     });
   }
-
   const quizList: Quiz[] = plainToInstance(Quiz, data.value as Quiz[]);
-  function getQuizById(id: number) {
-    return quizList.find((quiz) => quiz.id === id);
-  }
 
-  return { quizList, getQuizById };
+  return { quizList };
 };

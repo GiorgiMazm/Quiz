@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { getQuizById } = await useQuizzes();
+const { getQuizById } = useQuiz();
 const route = useRoute();
-const quiz = getQuizById(+route.params.id);
+const quiz = await getQuizById(+route.params.id);
 </script>
 
 <template>
