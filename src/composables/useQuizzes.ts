@@ -1,9 +1,16 @@
 import Quiz from "~/types/Quiz";
-import quizzes from "../data/quizzes.json";
 import { plainToInstance } from "class-transformer";
 
-export default () => {
-  const quizList: Quiz[] = plainToInstance(Quiz, quizzes);
+export default async () => {
+  const { error, data } = await useFetch("/api/quizzes");
+  if (error.value) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: "Something went wrong with fetching data, try again later",
+    });
+  }
+
+  const quizList: Quiz[] = plainToInstance(Quiz, data.value as Quiz[]);
   function getQuizById(id: number) {
     return quizList.find((quiz) => quiz.id === id);
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { quizList } = useQuizzes();
+const { quizList } = await useQuizzes();
 </script>
 
 <template>

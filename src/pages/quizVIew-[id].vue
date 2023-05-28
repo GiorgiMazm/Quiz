@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { getQuizById } = useQuizzes();
+const { getQuizById } = await useQuizzes();
 const route = useRoute();
 const quiz = getQuizById(+route.params.id);
 const pageLink = `/quiz-${route.params.id}/question-1`;
