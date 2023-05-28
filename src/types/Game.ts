@@ -1,11 +1,12 @@
 import Question from "~/types/Question";
-
+import "reflect-metadata";
 export default class Game {
   constructor(name: string, questionList: Question[], id: number) {
     this._name = name;
     this._questionList = questionList;
     this._id = id;
   }
+
   private _isActive: boolean = false;
   private _questionList: Question[];
   private _name: string;

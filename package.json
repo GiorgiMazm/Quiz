@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.7.0",
-    "prettier": "^2.8.8"
+    "class-transformer": "^0.5.1",
+    "prettier": "^2.8.8",
+    "reflect-metadata": "^0.1.13"
   }
 }
