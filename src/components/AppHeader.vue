@@ -10,7 +10,7 @@
               <NuxtLink to="/">Home</NuxtLink>
             </li>
             <li class="cursor-pointer hover:text-cyan-500">
-              <NuxtLink to="/quizzes">Play</NuxtLink>
+              <NuxtLink to="/quizzes">Quizzes</NuxtLink>
             </li>
             <li class="cursor-pointer hover:text-cyan-500">
               <NuxtLink to="/records">Records</NuxtLink>
