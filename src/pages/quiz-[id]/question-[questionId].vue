@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { gameList } = useGames();
+const { getGameById } = useGames();
 const route = useRoute();
-const game = gameList.find((game) => game.id === +route.params.id);
+const game = getGameById(+route.params.id);
 </script>
 
 <template>

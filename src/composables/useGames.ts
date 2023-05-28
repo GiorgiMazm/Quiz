@@ -4,5 +4,9 @@ import { plainToInstance } from "class-transformer";
 
 export default () => {
   const gameList: Game[] = plainToInstance(Game, games);
-  return { gameList };
+  function getGameById(id: number) {
+    return gameList.find((game) => game.id === id);
+  }
+
+  return { gameList, getGameById };
 };
