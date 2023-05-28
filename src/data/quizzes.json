@@ -1,7 +1,7 @@
 [{
   "id": 1,
-  "name": "the best name",
-  "description": "very very BAD description",
+  "name": "The best Quiz ever",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores exercitationem fuga illum incidunt nostrum optio porro quaerat ullam, voluptate! Enim expedita, officia. A aliquam amet asperiores cumque dignissimos dolorem ducimus ea earum enim eos esse, fugit illo labore laboriosam, maxime, modi nam necessitatibus nostrum numquam quos sit tempora temporibus ut. Animi commodi eos illum quo ut veniam voluptas. Adipisci consequuntur exercitationem explicabo illum incidunt ipsa, iste placeat reiciendis similique vitae. Cum eaque ipsa mollitia neque numquam quia suscipit tempore? Cupiditate, doloremque ea et necessitatibus quam quo rem. Ad aperiam beatae doloremque et impedit laboriosam minima perspiciatis quaerat vitae voluptate. Laborum.",
   "questionList": [{
     "id": 1,
     "title": "Who invented light bulb",
@@ -17,8 +17,8 @@
   }]
 }, {
   "id": 2,
-  "name": "the worst name",
-  "description": "very very GOOD description",
+    "name": "The worst Quiz ever",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores exercitationem fuga illum incidunt nostrum optio porro quaerat ullam, voluptate! Enim expedita, officia. A aliquam amet asperiores cumque dignissimos dolorem ducimus ea earum enim eos esse, fugit illo labore laboriosam, maxime, modi nam necessitatibus nostrum numquam quos sit tempora temporibus ut. Animi commodi eos illum quo ut veniam voluptas. Adipisci consequuntur exercitationem explicabo illum incidunt ipsa, iste placeat reiciendis similique vitae. Cum eaque ipsa mollitia neque numquam quia suscipit tempore? Cupiditate, doloremque ea et necessitatibus quam quo rem. Ad aperiam beatae doloremque et impedit laboriosam minima perspiciatis quaerat vitae voluptate. Laborum.",
   "questionList": [{
     "id": 1,
     "title": "Who invented light bulbbbb",
