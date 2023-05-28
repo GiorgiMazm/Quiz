@@ -1,6 +1,7 @@
 [{
   "id": 1,
   "name": "the best name",
+  "description": "very very BAD description",
   "questionList": [{
     "id": 1,
     "title": "Who invented light bulb",
@@ -17,6 +18,7 @@
 }, {
   "id": 2,
   "name": "the worst name",
+  "description": "very very GOOD description",
   "questionList": [{
     "id": 1,
     "title": "Who invented light bulbbbb",

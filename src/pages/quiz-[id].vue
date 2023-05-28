@@ -11,6 +11,7 @@ const pageLink = `/quiz-${route.params.id}/question-1`;
       <div class="container mx-auto">
         <div v-if="quiz" class="flex justify-between w-2/5 mx-auto pt-9">
           <h1 class="text-4xl font-bold">{{ quiz.name }}</h1>
+          <h2 class="text-2xl">{{ quiz.description }}</h2>
           <NuxtLink
             v-if="!quiz.isActive"
             @click="quiz.startQuiz()"

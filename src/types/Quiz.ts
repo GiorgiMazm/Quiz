@@ -1,9 +1,15 @@
 import Question from "~/types/Question";
 import "reflect-metadata";
 export default class Quiz {
-  constructor(name: string, questionList: Question[], id: number) {
+  constructor(
+    name: string,
+    questionList: Question[],
+    description: string,
+    id: number
+  ) {
     this._name = name;
     this._questionList = questionList;
+    this._description = description;
     this._id = id;
   }
 
@@ -11,6 +17,7 @@ export default class Quiz {
   private _questionList: Question[];
   private _name: string;
   private _id: number;
+  private _description: string;
   startQuiz() {
     this._isActive = true;
     console.log("The quiz was started");
@@ -55,5 +62,13 @@ export default class Quiz {
 
   set id(value: number) {
     this._id = value;
+  }
+
+  get description(): string {
+    return this._description;
+  }
+
+  set description(value: string) {
+    this._description = value;
   }
 }
