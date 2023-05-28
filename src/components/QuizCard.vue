@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import Game from "~/types/Game";
+import Quiz from "~/types/Quiz";
 import { UnwrapRef } from "vue";
 
 const props = defineProps({
-  game: {
-    type: Object as () => UnwrapRef<Game>,
+  quiz: {
+    type: Object as () => UnwrapRef<Quiz>,
     required: true,
   },
 });
-const gameLink = `/quiz-${props.game.id}`;
+const quizLink = `/quiz-${props.quiz.id}`;
 </script>
 
 <template>
   <div class="flex w-[30%] justify-between border-2 my-2 p-3">
-    <p>{{ props.game.name }}</p>
-    <p>Amount of questions: {{ props.game.questionAmount }}</p>
-    <NuxtLink class="hover:text-red-600" :to="gameLink">Start quiz</NuxtLink>
+    <p>{{ props.quiz.name }}</p>
+    <p>Amount of questions: {{ props.quiz.questionAmount }}</p>
+    <NuxtLink class="hover:text-red-600" :to="quizLink">Start quiz</NuxtLink>
   </div>
 </template>

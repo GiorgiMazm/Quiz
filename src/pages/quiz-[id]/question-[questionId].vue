@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { getGameById } = useGames();
+const { getQuizById } = useQuizzes();
 const route = useRoute();
-const game = getGameById(+route.params.id);
+const quiz = getQuizById(+route.params.id);
 </script>
 
 <template>
@@ -9,8 +9,8 @@ const game = getGameById(+route.params.id);
     <section>
       <div class="container mx-auto">
         <QuestionCard
-          v-if="game"
-          :question="game.questionList[+route.params.questionId - 1]"
+          v-if="quiz"
+          :question="quiz.questionList[+route.params.questionId - 1]"
         />
       </div>
     </section>

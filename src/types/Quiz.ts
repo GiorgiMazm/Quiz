@@ -1,6 +1,6 @@
 import Question from "~/types/Question";
 import "reflect-metadata";
-export default class Game {
+export default class Quiz {
   constructor(name: string, questionList: Question[], id: number) {
     this._name = name;
     this._questionList = questionList;
@@ -11,14 +11,14 @@ export default class Game {
   private _questionList: Question[];
   private _name: string;
   private _id: number;
-  startGame() {
+  startQuiz() {
     this._isActive = true;
-    console.log("The game was started");
+    console.log("The quiz was started");
   }
 
-  finishGame() {
+  finishQuiz() {
     this._isActive = false;
-    console.log("The game was finished");
+    console.log("The quiz was finished");
   }
 
   get isActive(): boolean {

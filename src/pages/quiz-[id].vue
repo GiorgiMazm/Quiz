@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { getGameById } = useGames();
+const { getQuizById } = useQuizzes();
 const route = useRoute();
-const game = getGameById(+route.params.id);
+const quiz = getQuizById(+route.params.id);
 const pageLink = `/quiz-${route.params.id}/question-1`;
 </script>
 
@@ -9,19 +9,19 @@ const pageLink = `/quiz-${route.params.id}/question-1`;
   <div>
     <section>
       <div class="container mx-auto">
-        <div v-if="game" class="flex justify-between w-2/5 mx-auto pt-9">
-          <h1 class="text-4xl font-bold">{{ game.name }}</h1>
+        <div v-if="quiz" class="flex justify-between w-2/5 mx-auto pt-9">
+          <h1 class="text-4xl font-bold">{{ quiz.name }}</h1>
           <NuxtLink
-            v-if="!game.isActive"
-            @click="game.startGame()"
+            v-if="!quiz.isActive"
+            @click="quiz.startQuiz()"
             :to="pageLink"
-            >Start game</NuxtLink
+            >Start quiz</NuxtLink
           >
 
-          <button v-if="game.isActive" @click="game.finishGame()">
+          <button v-if="quiz.isActive" @click="quiz.finishQuiz()">
             End quiz
           </button>
-          <button v-if="game.isActive" @click="game.finishGame()">
+          <button v-if="quiz.isActive" @click="quiz.finishQuiz()">
             Next question
           </button>
           <hr />
