@@ -8,7 +8,7 @@ const props = defineProps({
     required: true,
   },
 });
-const quizLink = `/quiz-${props.quiz.id}`;
+const quizLink = `/quizView-${props.quiz.id}`;
 </script>
 
 <template>
