@@ -10,6 +10,15 @@ const props = defineProps({
 });
 const isAnswered = ref(props.question?.isAnswered);
 const isCorrectAnswerChosen = ref(false);
+const route = useRoute();
+
+function getNextQuestionLink() {
+  const currentQuizId = route.path.split("/question")[0].slice(-1);
+
+  return `/quiz-${currentQuizId}/question-${props.question.id + 1}`;
+}
+
+console.log(getNextQuestionLink());
 function handleAnswer(isCorrectChosen: boolean) {
   if (!isAnswered.value) {
     isCorrectAnswerChosen.value = isCorrectChosen;
@@ -35,9 +44,12 @@ function handleAnswer(isCorrectChosen: boolean) {
           <span class="text-yellow-400 underline">{{
             question.correctOption
           }}</span>
-          <button class="ml-4 hover:bg-amber-600 bg-red-600 rounded-xl px-2">
+          <NuxtLink
+            :to="getNextQuestionLink()"
+            class="ml-4 hover:bg-amber-600 bg-red-600 rounded-xl px-2"
+          >
             next question
-          </button>
+          </NuxtLink>
         </h2>
         <div class="flex flex-wrap">
           <QuestionOption
