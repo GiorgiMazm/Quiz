@@ -14,5 +14,19 @@ export default () => {
     return plainToInstance(Quiz, data.value);
   }
 
-  return { getQuizById };
+  const isAnswered = useState("isAnswered", () => false);
+
+  async function getQuizzes() {
+    const { error, data } = await useFetch("/api/quizzes");
+    if (error.value) {
+      throw createError({
+        statusCode: 404,
+        statusMessage:
+          "Something went wrong with fetching data, try again later",
+      });
+    }
+    return plainToInstance(Quiz, data.value as Quiz[]);
+  }
+
+  return { getQuizById, isAnswered, getQuizzes };
 };

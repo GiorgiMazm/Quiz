@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { getQuizById } = useQuiz();
+const { getQuizById, isAnswered } = useQuiz();
 const route = useRoute();
 const quiz = await getQuizById(+route.params.id);
 </script>
@@ -9,7 +9,8 @@ const quiz = await getQuizById(+route.params.id);
     <section>
       <div class="container mx-auto">
         <div class="flex justify-around p-3">
-          <button>End quiz</button> <button>Next question</button>
+          <button>End quiz</button>
+          <button v-if="isAnswered">Next question</button>
         </div>
         <hr />
         <QuestionCard

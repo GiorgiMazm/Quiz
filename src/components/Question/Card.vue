@@ -25,6 +25,7 @@ const props = defineProps({
           <QuestionOption
             v-for="(option, index) in props.question?.options"
             :title="option"
+            :correctOption="question.correctOption"
             :key="index"
           />
         </div>
