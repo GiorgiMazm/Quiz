@@ -12,15 +12,13 @@ const props = defineProps({
     required: true,
   },
 });
-
+const isCorrectChosen = props.question.correctOption === props.option;
 function chooseOption() {
   if (props.question.isAnswered) {
-    console.log("should return!!");
     return;
   }
   props.question.isAnswered = true;
-
-  if (props.question.correctOption === props.option) {
+  if (isCorrectChosen) {
     divCLass.value += " bg-green-600";
   } else divCLass.value += " bg-red-600";
 }
@@ -31,7 +29,13 @@ const divCLass = ref(
 
 <template>
   <div class="w-1/2">
-    <div :class="divCLass" @click="chooseOption">
+    <div
+      :class="divCLass"
+      @click.once="
+        chooseOption();
+        $emit('answered', isCorrectChosen);
+      "
+    >
       <span> {{ props.option }} </span>
     </div>
   </div>
