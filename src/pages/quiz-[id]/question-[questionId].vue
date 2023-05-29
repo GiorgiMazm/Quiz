@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const { getQuizById, isAnswered } = useQuiz();
+const { getQuizById } = useQuiz();
 const route = useRoute();
 const quiz = await getQuizById(+route.params.id);
+
+const isAnswered = ref(
+  quiz.questionList[+route.params.questionId - 1].isAnswered
+);
 </script>
 
 <template>

@@ -24,8 +24,8 @@ const props = defineProps({
         <div class="flex flex-wrap">
           <QuestionOption
             v-for="(option, index) in props.question?.options"
-            :title="option"
-            :correctOption="question.correctOption"
+            :question="question"
+            :option="option"
             :key="index"
           />
         </div>

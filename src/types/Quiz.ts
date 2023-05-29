@@ -1,5 +1,4 @@
 import Question from "~/types/Question";
-import "reflect-metadata";
 export default class Quiz {
   constructor(
     name: string,

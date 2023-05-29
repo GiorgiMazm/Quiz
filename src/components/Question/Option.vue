@@ -1,31 +1,38 @@
 <script setup lang="ts">
+import { UnwrapRef } from "vue";
+import Question from "~/types/Question";
+
 const props = defineProps({
-  title: String,
-  correctOption: String,
+  question: {
+    type: Object as () => UnwrapRef<Question>,
+    required: true,
+  },
+  option: {
+    type: String,
+    required: true,
+  },
 });
 
-const { isAnswered } = useQuiz();
 function chooseOption() {
-  if (isAnswered.value) {
+  if (props.question.isAnswered) {
     console.log("should return!!");
     return;
   }
-  console.log(isAnswered.value);
-  isAnswered.value = true;
-  console.log(isAnswered.value);
-  if (props.title === props.correctOption) {
+  props.question.isAnswered = true;
+
+  if (props.question.correctOption === props.option) {
     divCLass.value += " bg-green-600";
   } else divCLass.value += " bg-red-600";
 }
 const divCLass = ref(
-  "text-center font-bold text-4xl text-gray-300 bg-gray-600 m-2 py-4 cursor-pointer hover:bg-gray-500"
+  "text-center font-bold text-4xl text-gray-300 bg-gray-600 m-2 py-4 cursor-pointer"
 );
 </script>
 
 <template>
   <div class="w-1/2">
     <div :class="divCLass" @click="chooseOption">
-      <span> {{ props.title }} </span>
+      <span> {{ props.option }} </span>
     </div>
   </div>
 </template>

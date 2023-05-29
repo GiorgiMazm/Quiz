@@ -4,6 +4,14 @@ export default class Question {
   private _image: string;
   private _correctOption: string;
   private readonly _id: number;
+  private _isAnswered: boolean = false;
+  get isAnswered(): boolean {
+    return this._isAnswered;
+  }
+
+  set isAnswered(value: boolean) {
+    this._isAnswered = value;
+  }
 
   constructor(
     options: string[],
@@ -51,9 +59,5 @@ export default class Question {
 
   set options(value: string[]) {
     this._options = value;
-  }
-
-  isAnswerCorrect(answer: string) {
-    return this._correctOption === answer;
   }
 }

@@ -13,9 +13,6 @@ export default () => {
     }
     return plainToInstance(Quiz, data.value);
   }
-
-  const isAnswered = useState("isAnswered", () => false);
-
   async function getQuizzes() {
     const { error, data } = await useFetch("/api/quizzes");
     if (error.value) {
@@ -28,5 +25,5 @@ export default () => {
     return plainToInstance(Quiz, data.value as Quiz[]);
   }
 
-  return { getQuizById, isAnswered, getQuizzes };
+  return { getQuizById, getQuizzes };
 };
