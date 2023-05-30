@@ -15,6 +15,7 @@ const quiz = await getQuizById(+route.params.id);
         <QuestionCard
           v-if="quiz"
           :question="quiz.questionList[+route.params.questionId - 1]"
+          :questionAmount="quiz.questionAmount"
         />
       </div>
     </section>

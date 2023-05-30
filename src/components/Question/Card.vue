@@ -7,18 +7,22 @@ const props = defineProps({
     type: Object as () => UnwrapRef<Question>,
     required: true,
   },
+  questionAmount: {
+    type: Number,
+    required: true,
+  },
 });
+
 const isAnswered = ref(props.question?.isAnswered);
 const isCorrectAnswerChosen = ref(false);
 const route = useRoute();
+const questionId = props.question.id;
+const isLastQuestion = computed(() => questionId >= props.questionAmount);
 
 function getNextQuestionLink() {
   const currentQuizId = route.path.split("/question")[0].slice(-1);
-
-  return `/quiz-${currentQuizId}/question-${props.question.id + 1}`;
+  return `/quiz-${currentQuizId}/question-${questionId + 1}`;
 }
-
-console.log(getNextQuestionLink());
 function handleAnswer(isCorrectChosen: boolean) {
   if (!isAnswered.value) {
     isCorrectAnswerChosen.value = isCorrectChosen;
@@ -45,6 +49,7 @@ function handleAnswer(isCorrectChosen: boolean) {
             question.correctOption
           }}</span>
           <NuxtLink
+            v-if="!isLastQuestion"
             :to="getNextQuestionLink()"
             class="ml-4 hover:bg-amber-600 bg-red-600 rounded-xl px-2"
           >
