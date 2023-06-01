@@ -18,6 +18,7 @@ const isCorrectAnswerChosen = ref(false);
 const route = useRoute();
 const questionId = props.question.id;
 const isLastQuestion = computed(() => questionId >= props.questionAmount);
+const { correctAnswerCounter } = useQuiz();
 
 function getNextQuestionLink() {
   const currentQuizId = route.path.split("/question")[0].slice(-1);
@@ -26,6 +27,9 @@ function getNextQuestionLink() {
 function handleAnswer(isCorrectChosen: boolean) {
   if (!isAnswered.value) {
     isCorrectAnswerChosen.value = isCorrectChosen;
+    if (isCorrectChosen) {
+      correctAnswerCounter.value++;
+    }
     isAnswered.value = true;
   }
 }
@@ -37,7 +41,7 @@ function handleAnswer(isCorrectChosen: boolean) {
       <div class="text-center text-4xl">
         <h1>{{ props.question?.title }}?</h1>
         <div class="flex justify-between items-center py-4">
-          <p>30</p>
+          <p>Question {{ questionId }}/{{ props.questionAmount }}</p>
           <img :src="props.question?.image" alt="light bulb" class="h-72" />
           <p>0 correct</p>
         </div>

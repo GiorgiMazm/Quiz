@@ -25,5 +25,7 @@ export default () => {
     return plainToInstance(Quiz, data.value as Quiz[]);
   }
 
-  return { getQuizById, getQuizzes };
+  const correctAnswerCounter = useState("correctAnswerCounter", () => 0);
+
+  return { getQuizById, getQuizzes, correctAnswerCounter };
 };
