@@ -10,7 +10,6 @@ const quiz = await getQuizById(+route.params.id);
       <div class="container mx-auto">
         <div class="flex justify-around p-3">
           <button>End quiz</button>
-          <p>Correct Answer Count: {{ correctAnswerCounter }}</p>
         </div>
         <hr />
         <QuestionCard
