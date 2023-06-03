@@ -36,7 +36,12 @@ function handleAnswer(isCorrectChosen: boolean) {
   <div>
     <section>
       <div class="text-center text-4xl">
-        <button @click="endQuiz">End quiz</button>
+        <button
+          class="bg-amber-600 hover:bg-sky-400 px-4 py-2 rounded-xl mt-4 text-2xl"
+          @click="endQuiz"
+        >
+          End quiz
+        </button>
         <h1>{{ question?.title }}?</h1>
         <div class="flex justify-between items-center py-4">
           <p>Question {{ question.id }}/{{ quiz.questionAmount }}</p>
