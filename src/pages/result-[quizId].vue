@@ -1,17 +1,21 @@
 <script setup lang="ts">
 const route = useRoute();
-if (!route.query.correct) {
-  throw useError();
-}
 const { getQuizById } = useQuiz();
 const quiz = await getQuizById(+route.params.quizId);
+if (
+  route.query.correct === null ||
+  +route.query.correct > quiz.questionAmount ||
+  +route.query.correct < 0
+) {
+  throw useError();
+}
 </script>
 
 <template>
   <div>
     <section>
       <div class="container mx-auto text-center">
-        <h1 class="text-6xl mt-44">
+        <h1 class="text-6xl pt-44">
           Congratulation! You have just finished a quiz "{{ quiz.name }}"
         </h1>
         <h2 class="text-4xl">
