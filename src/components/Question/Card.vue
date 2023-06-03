@@ -18,11 +18,16 @@ const isCorrectAnswerChosen = ref(false);
 const route = useRoute();
 const questionId = props.question.id;
 const isLastQuestion = computed(() => questionId >= props.questionAmount);
-const { correctAnswerCounter } = useQuiz();
+
+const correctAnswerCounter = ref(0);
+if (route.query.correct) correctAnswerCounter.value = +route.query.correct;
 
 function getNextQuestionLink() {
   const currentQuizId = route.path.split("/question")[0].slice(-1);
-  return `/quiz-${currentQuizId}/question-${questionId + 1}`;
+
+  return `/quiz-${currentQuizId}/question-${questionId + 1}?correct=${
+    correctAnswerCounter.value
+  }`;
 }
 function handleAnswer(isCorrectChosen: boolean) {
   if (!isAnswered.value) {

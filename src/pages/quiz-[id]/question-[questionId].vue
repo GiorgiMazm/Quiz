@@ -1,9 +1,11 @@
 <script setup lang="ts">
-const { getQuizById, correctAnswerCounter } = useQuiz();
+const { getQuizById } = useQuiz();
 const route = useRoute();
 const quiz = await getQuizById(+route.params.id);
 const router = useRouter();
 
+const correctAnswerCounter = ref(0);
+if (route.query.correct) correctAnswerCounter.value = +route.query.correct;
 function endQuiz() {
   const link = `/result-${quiz.id}/?correct=${correctAnswerCounter.value}`;
   correctAnswerCounter.value = 0;

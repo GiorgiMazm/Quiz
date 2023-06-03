@@ -14,6 +14,30 @@
     "image": "https://saltmag.ru/media/articles/covers/2019/3194/Ph_PreviewVert.jpg",
     "correctOption": "Stoicism",
     "options": ["Hedonism", "Stoicism", "Skepticism", "Asceticism"]
+  }, {
+    "id": 3,
+    "title": "The best philosophy",
+    "image": "https://saltmag.ru/media/articles/covers/2019/3194/Ph_PreviewVert.jpg",
+    "correctOption": "Stoicism",
+    "options": ["Hedonism", "Stoicism", "Skepticism", "Asceticism"]
+  },{
+    "id": 4,
+    "title": "The best philosophy",
+    "image": "https://saltmag.ru/media/articles/covers/2019/3194/Ph_PreviewVert.jpg",
+    "correctOption": "Stoicism",
+    "options": ["Hedonism", "Stoicism", "Skepticism", "Asceticism"]
+  },{
+    "id": 5,
+    "title": "The best philosophy",
+    "image": "https://saltmag.ru/media/articles/covers/2019/3194/Ph_PreviewVert.jpg",
+    "correctOption": "Stoicism",
+    "options": ["Hedonism", "Stoicism", "Skepticism", "Asceticism"]
+  },{
+    "id": 6,
+    "title": "The best philosophy",
+    "image": "https://saltmag.ru/media/articles/covers/2019/3194/Ph_PreviewVert.jpg",
+    "correctOption": "Stoicism",
+    "options": ["Hedonism", "Stoicism", "Skepticism", "Asceticism"]
   }]
 }, {
   "id": 2,
