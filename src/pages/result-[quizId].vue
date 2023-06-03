@@ -20,7 +20,7 @@ if (
         </h1>
         <h2 class="text-4xl">
           You got {{ route.query.correct }} correct answers of
-          {{ quiz.questionAmount }}
+          {{ quiz.questionAmount }} questions
         </h2>
         <NuxtLink
           to="/quizzes"
