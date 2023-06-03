@@ -15,7 +15,6 @@ const pageLink = `/quiz-${route.params.id}/question-1`;
           <p class="text-xl">Quiz has {{ quiz.questionAmount }} questions</p>
           <NuxtLink
             class="py-3 px-4 bg-sky-400 mt-3 inline-block hover:bg-red-600 hover:text-black"
-            @click="quiz.startQuiz()"
             :to="pageLink"
             >Start quiz</NuxtLink
           >

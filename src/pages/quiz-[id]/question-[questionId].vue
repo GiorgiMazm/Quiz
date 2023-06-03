@@ -1,26 +1,24 @@
 <script setup lang="ts">
 const { getQuizById } = useQuiz();
 const route = useRoute();
-const quiz = await getQuizById(+route.params.id);
 const router = useRouter();
-const correctAnswerCounter = ref(0);
+const quiz = await getQuizById(+route.params.id);
 const question = quiz.questionList[+route.params.questionId - 1];
+const isAnswered = ref(question.isAnswered);
+const isCorrectAnswerChosen = ref(false);
+const isLastQuestion = computed(() => question.id >= quiz.questionAmount);
+const correctAnswerCounter = ref(0);
+
 if (route.query.correct) correctAnswerCounter.value = +route.query.correct;
 function endQuiz() {
   const link = `/result-${quiz.id}/?correct=${correctAnswerCounter.value}`;
   router.push(link);
 }
-
-const isAnswered = ref(question?.isAnswered);
-const isCorrectAnswerChosen = ref(false);
-const isLastQuestion = computed(() => question.id >= quiz.questionAmount);
-function getNextQuestionLink() {
-  const currentQuizId = route.path.split("/question")[0].slice(-1);
-
-  return `/quiz-${currentQuizId}/question-${question.id + 1}?correct=${
+const getNextQuestionLink = computed(() => {
+  return `/quiz-${quiz.id}/question-${question.id + 1}?correct=${
     correctAnswerCounter.value
   }`;
-}
+});
 function handleAnswer(isCorrectChosen: boolean) {
   if (!isAnswered.value) {
     isCorrectAnswerChosen.value = isCorrectChosen;
@@ -57,7 +55,7 @@ function handleAnswer(isCorrectChosen: boolean) {
           }}</span>
           <NuxtLink
             v-if="!isLastQuestion"
-            :to="getNextQuestionLink()"
+            :to="getNextQuestionLink"
             class="ml-4 hover:bg-amber-600 bg-red-600 rounded-xl px-2"
           >
             next question

@@ -17,15 +17,6 @@ export default class Quiz {
   private _name: string;
   private _id: number;
   private _description: string;
-  startQuiz() {
-    this._isActive = true;
-    console.log("The quiz was started");
-  }
-
-  finishQuiz() {
-    this._isActive = false;
-    console.log("The quiz was finished");
-  }
 
   get isActive(): boolean {
     return this._isActive;
