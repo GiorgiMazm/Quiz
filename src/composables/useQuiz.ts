@@ -22,7 +22,7 @@ export default () => {
           "Something went wrong with fetching data, try again later",
       });
     }
-    return plainToInstance(Quiz, data.value as Quiz[]);
+    return plainToInstance(Quiz, data.value as unknown as Quiz[]);
   }
 
   return { getQuizById, getQuizzes };
