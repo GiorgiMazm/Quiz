@@ -2,7 +2,7 @@
 const { getQuizById } = useQuiz();
 const route = useRoute();
 const router = useRouter();
-const quiz = await getQuizById(+route.params.id);
+const quiz = await getQuizById(String(route.params.id));
 const question = quiz.questionList[+route.params.questionId - 1];
 const isAnswered = ref(question.isAnswered);
 const isCorrectAnswerChosen = ref(false);

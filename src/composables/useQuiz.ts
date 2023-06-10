@@ -2,7 +2,7 @@ import Quiz from "~/types/Quiz";
 import { plainToInstance } from "class-transformer";
 
 export default () => {
-  async function getQuizById(id: number) {
+  async function getQuizById(id: string) {
     const { error, data } = await useFetch(`/api/quiz/${id}`);
     if (error.value) {
       throw createError({

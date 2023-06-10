@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { getQuizById } = useQuiz();
-const quiz = await getQuizById(+route.params.quizId);
+const quiz = await getQuizById(String(route.params.quizId));
 if (
   route.query.correct === null ||
   +route.query.correct > quiz.questionAmount ||

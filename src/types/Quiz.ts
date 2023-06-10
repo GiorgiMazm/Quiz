@@ -1,10 +1,11 @@
 import Question from "~/types/Question";
+import { ObjectId } from "bson";
 export default class Quiz {
   constructor(
     name: string,
     questionList: Question[],
     description: string,
-    id: number
+    id: ObjectId
   ) {
     this._name = name;
     this._questionList = questionList;
@@ -15,7 +16,7 @@ export default class Quiz {
   private _isActive: boolean = false;
   private _questionList: Question[];
   private _name: string;
-  private _id: number;
+  private _id: ObjectId;
   private _description: string;
 
   get isActive(): boolean {
@@ -46,11 +47,11 @@ export default class Quiz {
     this._name = value;
   }
 
-  get id(): number {
+  get id(): ObjectId {
     return this._id;
   }
 
-  set id(value: number) {
+  set id(value: ObjectId) {
     this._id = value;
   }
 
