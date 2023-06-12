@@ -1,8 +1,8 @@
 import { MongoClient } from "mongodb";
 
 export default async () => {
-  const url = "mongodb://127.0.0.1:27017";
-  const client = new MongoClient(url);
+  const runtimeConfig = useRuntimeConfig();
+  const client = new MongoClient(runtimeConfig.dbUrl);
   try {
     await client.connect();
     return client;
