@@ -1,12 +1,25 @@
 import connectDb from "../plugins/connectDb";
+import Quiz from "../../src/types/Quiz";
+import { ObjectId } from "bson";
+import { plainToInstance } from "class-transformer";
 
 export default defineEventHandler(async (event) => {
   const client = await connectDb();
   if (!client) return;
   const db = await client.db("quiz");
   const quizzes = await db.collection("quizzes");
-  const newQuiz = await readBody(event);
+  const newQuiz: Quiz = plainToInstance(Quiz, (await readBody(event)) as Quiz);
+  console.log(newQuiz.id);
 
-  await quizzes.updateOne({ _id: newQuiz._id }, { $set: newQuiz });
+  await quizzes.updateOne(
+    { _id: new ObjectId(newQuiz.id) },
+    {
+      $set: {
+        name: newQuiz.name,
+        description: newQuiz.description,
+        questionList: newQuiz.questionList,
+      },
+    }
+  );
   return "success";
 });
