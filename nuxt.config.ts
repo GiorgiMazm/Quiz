@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     dbUrl: process.env.DB_URL,
   },
+  // @ts-ignore
   buildModules: ["@nuxt/typescript-build"],
   serverDir: "server/",
   srcDir: "src/",
