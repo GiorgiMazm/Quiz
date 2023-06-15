@@ -25,5 +25,19 @@ export default () => {
     return plainToInstance(Quiz, data.value as unknown as Quiz[]);
   }
 
-  return { getQuizById, getQuizzes };
+  async function deleteQuiz(id: any) {
+    if (!id) return;
+    const { error } = await useFetch(`/api/quiz/${id}`, {
+      method: "DELETE",
+    });
+    if (error.value) {
+      throw createError({
+        statusCode: 404,
+        statusMessage:
+          "Something went wrong with deleting this quiz, try again later",
+      });
+    }
+  }
+
+  return { getQuizById, getQuizzes, deleteQuiz };
 };

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { getQuizzes } = useQuiz();
-const quizList = await getQuizzes();
+const quizList = reactive(await getQuizzes());
 </script>
 
 <template>

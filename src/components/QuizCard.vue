@@ -3,6 +3,7 @@ import Quiz from "~/types/Quiz";
 import { UnwrapRef } from "vue";
 import { XMarkIcon, PencilIcon } from "@heroicons/vue/24/solid";
 
+const { deleteQuiz } = useQuiz();
 const props = defineProps({
   quiz: {
     type: Object as () => UnwrapRef<Quiz>,
@@ -24,6 +25,9 @@ function editQuiz() {
       class="h-6 w-6 cursor-pointer hover:text-red-800"
       @click="editQuiz"
     />
-    <XMarkIcon class="h-6 w-6 cursor-pointer hover:text-red-800" />
+    <XMarkIcon
+      @click="deleteQuiz(props.quiz?.id)"
+      class="h-6 w-6 cursor-pointer hover:text-red-800"
+    />
   </div>
 </template>
