@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Question from "~/types/Question";
+import { XMarkIcon } from "@heroicons/vue/24/solid";
 
 const name = ref("");
 const description = ref("");
@@ -8,6 +9,10 @@ const questions = ref<Array<Question>>([]);
 function addQuestion() {
   questions.value.push(new Question([], "", "", "", 10));
   console.log(questions.value);
+}
+
+function deleteQuestion(index: number) {
+  questions.value.splice(index, 1);
 }
 
 function createQuiz() {
@@ -25,7 +30,7 @@ function createQuiz() {
             <div class="mt-5">
               <label>Quiz name</label>
               <input
-                class="ml-2 px-2 py-1 rounded-xl"
+                class="ml-2 px-2 py-1 rounded-xl w-3/5"
                 type="text"
                 placeholder="name"
                 v-model="name"
@@ -35,16 +40,20 @@ function createQuiz() {
             <div class="mt-5 flex">
               <label>Description</label>
               <textarea
-                class="ml-2 px-2 py-1 rounded-xl"
+                class="ml-2 px-2 py-1 rounded-xl w-3/5"
                 placeholder="Description"
                 v-model="description"
               />
             </div>
 
             <div
-              v-for="question in questions"
+              v-for="(question, index) in questions"
               class="border-2 border-gray-800 m-4 p-4"
             >
+              <XMarkIcon
+                class="h-6 w-6 cursor-pointer hover:text-red-800"
+                @click.prevent="deleteQuestion(index)"
+              />
               <div>
                 <label>Question</label>
                 <input
