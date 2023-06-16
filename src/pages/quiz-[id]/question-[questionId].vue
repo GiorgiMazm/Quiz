@@ -3,10 +3,11 @@ const { getQuizById } = useQuiz();
 const route = useRoute();
 const router = useRouter();
 const quiz = await getQuizById(String(route.params.id));
-const question = quiz.questionList[+route.params.questionId - 1];
+const questionId = +route.params.questionId;
+const question = quiz.questionList[questionId - 1];
 const isAnswered = ref(question.isAnswered);
 const isCorrectAnswerChosen = ref(false);
-const isLastQuestion = computed(() => question.id >= quiz.questionAmount);
+const isLastQuestion = computed(() => questionId >= quiz.questionAmount);
 const correctAnswerCounter = ref(0);
 
 if (route.query.correct) correctAnswerCounter.value = +route.query.correct;
@@ -15,7 +16,7 @@ function endQuiz() {
   router.push(link);
 }
 const getNextQuestionLink = computed(() => {
-  return `/quiz-${quiz.id}/question-${question.id + 1}?correct=${
+  return `/quiz-${quiz.id}/question-${questionId + 1}?correct=${
     correctAnswerCounter.value
   }`;
 });
@@ -42,7 +43,7 @@ function handleAnswer(isCorrectChosen: boolean) {
         </button>
         <h1>{{ question?.title }}?</h1>
         <div class="flex justify-between items-center py-4">
-          <p>Question {{ question.id }}/{{ quiz.questionAmount }}</p>
+          <p>Question {{ questionId }}/{{ quiz.questionAmount }}</p>
           <img :src="question?.image" alt="light bulb" class="h-72" />
           <p>{{ correctAnswerCounter }} correct</p>
         </div>

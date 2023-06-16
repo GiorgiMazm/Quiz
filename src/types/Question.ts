@@ -3,7 +3,6 @@ export default class Question {
   private _title: string;
   private _image: string;
   private _correctOption: string;
-  private readonly _id: number;
   private _isAnswered: boolean = false;
   get isAnswered(): boolean {
     return this._isAnswered;
@@ -17,14 +16,12 @@ export default class Question {
     options: string[],
     title: string,
     image: string,
-    correctOption: string,
-    id: number
+    correctOption: string
   ) {
     this._options = options;
     this._image = image;
     this._correctOption = correctOption;
     this._title = title;
-    this._id = id;
   }
   get title(): string {
     return this._title;
@@ -44,10 +41,6 @@ export default class Question {
 
   get correctOption(): string {
     return this._correctOption;
-  }
-
-  get id(): number {
-    return this._id;
   }
 
   set correctOption(value: string) {

@@ -7,7 +7,7 @@ const description = ref("");
 const questions = ref<Array<Question>>([]);
 
 function addQuestion() {
-  questions.value.push(new Question([], "", "", "", 10));
+  questions.value.push(new Question([], "", "", ""));
   console.log(questions.value);
 }
 
