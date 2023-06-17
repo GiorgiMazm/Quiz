@@ -56,5 +56,22 @@ export default () => {
     }
   }
 
-  return { getQuizById, getQuizzes, deleteQuiz, createQuiz };
+  async function updateQuiz(quiz: Quiz) {
+    const { error } = await useFetch(`/api/editQuiz`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quiz),
+    });
+    if (error.value) {
+      throw createError({
+        statusCode: 404,
+        statusMessage:
+          "Something went wrong with fetching data, try again later",
+      });
+    }
+  }
+
+  return { getQuizById, getQuizzes, deleteQuiz, createQuiz, updateQuiz };
 };
