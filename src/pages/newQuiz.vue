@@ -147,7 +147,17 @@ async function handleCreateQuiz() {
             </div>
             <button @click.prevent="addQuestion">Add question</button>
             <br />
-            <button @click.prevent="handleCreateQuiz">Create</button>
+            <button
+              class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
+              @click.prevent="handleCreateQuiz"
+            >
+              Create
+            </button>
+            <NuxtLink
+              class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
+              to="/quizzes"
+              >Back</NuxtLink
+            >
           </form>
         </div>
       </div>

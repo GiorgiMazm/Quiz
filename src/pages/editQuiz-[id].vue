@@ -134,7 +134,17 @@ function handleQuizUpdate() {
             </div>
             <button @click.prevent="addQuestion">Add question</button>
             <br />
-            <button @click.prevent="handleQuizUpdate">Save</button>
+            <button
+              class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
+              @click.prevent="handleQuizUpdate"
+            >
+              Save
+            </button>
+            <NuxtLink
+              class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
+              to="/quizzes"
+              >Back</NuxtLink
+            >
           </form>
         </div>
       </div>
