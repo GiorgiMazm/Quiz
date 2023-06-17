@@ -1,22 +1,45 @@
 <script setup lang="ts">
-import Question from "~/types/Question";
 import { XMarkIcon } from "@heroicons/vue/24/solid";
+import Quiz from "~/types/Quiz";
 
 const name = ref("");
 const description = ref("");
-const questions = ref<Array<Question>>([]);
+const questions = ref<
+  Array<{
+    title: string;
+    image: string;
+    options: Array<string>;
+    correctOption: string;
+  }>
+>([]);
+const { createQuiz } = useQuiz();
 
 function addQuestion() {
-  questions.value.push(new Question([], "", "", ""));
-  console.log(questions.value);
+  questions.value.push({
+    options: [],
+    correctOption: "",
+    title: "",
+    image: "",
+  });
 }
 
 function deleteQuestion(index: number) {
   questions.value.splice(index, 1);
 }
 
-function createQuiz() {
-  console.log(questions);
+async function handleCreateQuiz() {
+  console.log({
+    name: name.value,
+    description: description.value,
+    questionList: questions.value,
+  });
+  await createQuiz({
+    name: name.value,
+    description: description.value,
+    questionList: questions.value,
+  } as Quiz);
+
+  await useRouter().push("/quizzes");
 }
 </script>
 
@@ -129,7 +152,7 @@ function createQuiz() {
             </div>
             <button @click.prevent="addQuestion">Add question</button>
             <br />
-            <button @click.prevent="createQuiz">Create</button>
+            <button @click.prevent="handleCreateQuiz">Create</button>
           </form>
         </div>
       </div>
