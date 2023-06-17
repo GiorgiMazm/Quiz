@@ -28,11 +28,6 @@ function deleteQuestion(index: number) {
 }
 
 async function handleCreateQuiz() {
-  console.log({
-    name: name.value,
-    description: description.value,
-    questionList: questions.value,
-  });
   await createQuiz({
     name: name.value,
     description: description.value,
