@@ -2,9 +2,13 @@ db.createCollection("quizzes", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["name", "description", "questionList"],
+      required: ["name", "description", "questionList", "category"],
       properties: {
         name: {
+          bsonType: "string",
+          description: "must be a string and is required",
+        },
+        category: {
           bsonType: "string",
           description: "must be a string and is required",
         },

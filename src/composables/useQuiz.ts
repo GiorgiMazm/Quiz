@@ -1,5 +1,6 @@
 import Quiz from "~/types/Quiz";
 import { plainToInstance } from "class-transformer";
+import { QuizCategory } from "~/types/QuizCategory";
 
 export default () => {
   async function getQuizById(id: string) {
@@ -13,8 +14,10 @@ export default () => {
     }
     return plainToInstance(Quiz, data.value);
   }
-  async function getQuizzes() {
-    const { error, data } = await useFetch("/api/quizzes");
+  async function getQuizzes(filter: QuizCategory) {
+    const { error, data } = await useFetch("/api/quizzes", {
+      params: { filter: filter },
+    });
     if (error.value) {
       throw createError({
         statusCode: 404,
