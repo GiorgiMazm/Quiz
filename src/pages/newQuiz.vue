@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import Quiz from "~/types/Quiz";
-
+import { QuizCategory } from "~/types/QuizCategory";
+const QuizCategoryList = Object.values(QuizCategory).filter(
+  (category) => category !== "All"
+);
+const category: Ref<QuizCategory> = ref(QuizCategory.Education);
 const name = ref("");
 const description = ref("");
 const questions = ref<
@@ -32,7 +36,8 @@ async function handleCreateQuiz() {
     name: name.value,
     description: description.value,
     questionList: questions.value,
-  } as Quiz);
+    category: category.value,
+  } as unknown as Quiz);
 
   await useRouter().push("/quizzes");
 }
@@ -146,7 +151,14 @@ async function handleCreateQuiz() {
               </div>
             </div>
             <button @click.prevent="addQuestion">Add question</button>
-            <br />
+            <div>
+              <label>Category</label>
+              <select v-model="category" name="category" class="ml-3 mb-3">
+                <option v-for="category in QuizCategoryList" :value="category">
+                  {{ category }}
+                </option>
+              </select>
+            </div>
             <button
               class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
               @click.prevent="handleCreateQuiz"

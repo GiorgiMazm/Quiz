@@ -3,4 +3,5 @@ export enum QuizCategory {
   Education = "Education",
   Fun = "Fun",
   Sport = "Sport",
+  Other = "Other",
 }

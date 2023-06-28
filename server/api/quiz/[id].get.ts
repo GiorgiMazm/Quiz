@@ -12,7 +12,13 @@ export default defineEventHandler(async (event) => {
   const quizzesCollection = await db.collection("quizzes");
   const quizzes = await quizzesCollection.find().toArray();
   const quizzesList = quizzes.map((quiz) => {
-    return new Quiz(quiz.name, quiz.questionList, quiz.description, quiz._id);
+    return new Quiz(
+      quiz.name,
+      quiz.questionList,
+      quiz.description,
+      quiz._id,
+      quiz.category
+    );
   });
   return (
     quizzesList.find((quiz) =>

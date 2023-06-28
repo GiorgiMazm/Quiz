@@ -11,7 +11,7 @@ const props = defineProps({
 });
 const quizLink = `/quizView-${props.quiz.id}`;
 function editQuiz() {
-  useRouter().push(`editQuiz-${props.quiz.id}`);
+  useRouter().push(`/editQuiz-${props.quiz.id}`);
 }
 </script>
 

@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
   const db = await client.db("quiz");
   const quizzes = await db.collection("quizzes");
   const newQuiz: Quiz = plainToInstance(Quiz, (await readBody(event)) as Quiz);
-  console.log(newQuiz.id);
 
   await quizzes.updateOne(
     { _id: new ObjectId(newQuiz.id) },
@@ -18,6 +17,7 @@ export default defineEventHandler(async (event) => {
         name: newQuiz.name,
         description: newQuiz.description,
         questionList: newQuiz.questionList,
+        category: newQuiz.category,
       },
     }
   );

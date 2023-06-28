@@ -2,10 +2,14 @@
 import Quiz from "~/types/Quiz";
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import Question from "~/types/Question";
+import { QuizCategory } from "~/types/QuizCategory";
 
 const { getQuizById, updateQuiz } = useQuiz();
 const quiz: Quiz = await getQuizById(useRoute().params?.id.toString());
 const questions = reactive(quiz.questionList);
+const QuizCategoryList = Object.values(QuizCategory).filter(
+  (category) => category !== "All"
+);
 function addQuestion() {
   questions.push({
     options: [],
@@ -133,7 +137,14 @@ function handleQuizUpdate() {
               </div>
             </div>
             <button @click.prevent="addQuestion">Add question</button>
-            <br />
+            <div>
+              <label>Category</label>
+              <select v-model="quiz.category" name="category" class="ml-3 mb-3">
+                <option v-for="category in QuizCategoryList" :value="category">
+                  {{ category }}
+                </option>
+              </select>
+            </div>
             <button
               class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
               @click.prevent="handleQuizUpdate"

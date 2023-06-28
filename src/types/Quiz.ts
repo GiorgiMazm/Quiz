@@ -1,16 +1,26 @@
 import Question from "~/types/Question";
 import { ObjectId } from "bson";
+import { QuizCategory } from "~/types/QuizCategory";
 export default class Quiz {
+  get category(): QuizCategory {
+    return this._category;
+  }
+
+  set category(value: QuizCategory) {
+    this._category = value;
+  }
   constructor(
     name: string,
     questionList: Question[],
     description: string,
-    id: ObjectId
+    id: ObjectId,
+    category: QuizCategory
   ) {
     this._name = name;
     this._questionList = questionList;
     this._description = description;
     this._id = id;
+    this._category = category;
   }
 
   private _isActive: boolean = false;
@@ -18,6 +28,7 @@ export default class Quiz {
   private _name: string;
   private _id: ObjectId;
   private _description: string;
+  private _category: QuizCategory;
 
   get isActive(): boolean {
     return this._isActive;
