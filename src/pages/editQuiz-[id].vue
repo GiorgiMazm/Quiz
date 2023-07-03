@@ -35,7 +35,9 @@ function handleQuizUpdate() {
       <div class="container mx-auto">
         <div>
           <form>
-            New quiz creation
+            <h1 class="text-center text-5xl font-bold text-gray-700">
+              Edit Quiz
+            </h1>
             <div class="mt-5">
               <label>Quiz name</label>
               <input
@@ -53,6 +55,19 @@ function handleQuizUpdate() {
                 placeholder="Description"
                 v-model="quiz.description"
               />
+            </div>
+
+            <div>
+              <label>Category</label>
+              <select
+                v-model="quiz.category"
+                name="category"
+                class="ml-3 mb-3 mt-5"
+              >
+                <option v-for="category in QuizCategoryList" :value="category">
+                  {{ category }}
+                </option>
+              </select>
             </div>
 
             <div
@@ -137,14 +152,7 @@ function handleQuizUpdate() {
               </div>
             </div>
             <button @click.prevent="addQuestion">Add question</button>
-            <div>
-              <label>Category</label>
-              <select v-model="quiz.category" name="category" class="ml-3 mb-3">
-                <option v-for="category in QuizCategoryList" :value="category">
-                  {{ category }}
-                </option>
-              </select>
-            </div>
+            <br />
             <button
               class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
               @click.prevent="handleQuizUpdate"

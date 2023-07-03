@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const db = await client.db("quiz");
   const quizzes = await db.collection("quizzes");
 
-  if (filter === "All") {
+  if (!filter || filter === "All") {
     return quizzes.find().toArray();
   } else {
     return quizzes.find({ category: filter }).toArray();

@@ -3,8 +3,9 @@ import { plainToInstance } from "class-transformer";
 import { QuizCategory } from "~/types/QuizCategory";
 
 export default () => {
+  const url = "/api/quiz";
   async function getQuizById(id: string) {
-    const { error, data } = await useFetch(`/api/quiz/${id}`);
+    const { error, data } = await useFetch(`${url}/${id}`);
     if (error.value) {
       throw createError({
         statusCode: 404,
@@ -15,7 +16,7 @@ export default () => {
     return plainToInstance(Quiz, data.value);
   }
   async function getQuizzes(filter: QuizCategory) {
-    const { error, data } = await useFetch("/api/quizzes", {
+    const { error, data } = await useFetch(url, {
       params: { filter: filter },
     });
     if (error.value) {
@@ -30,7 +31,7 @@ export default () => {
 
   async function deleteQuiz(id: any) {
     if (!id) return;
-    const { error } = await useFetch(`/api/quiz/${id}`, {
+    const { error } = await useFetch(`${url}/${id}`, {
       method: "DELETE",
     });
     if (error.value) {
@@ -43,7 +44,7 @@ export default () => {
   }
 
   async function createQuiz(quiz: Quiz) {
-    const { error } = await useFetch(`/api/newQuiz`, {
+    const { error } = await useFetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +61,7 @@ export default () => {
   }
 
   async function updateQuiz(quiz: Quiz) {
-    const { error } = await useFetch(`/api/editQuiz`, {
+    const { error } = await useFetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
