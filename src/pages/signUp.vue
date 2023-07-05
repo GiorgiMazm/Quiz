@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const { createUser } = useUser();
-const name = ref("");
+const nickname = ref("");
 const password = ref("");
 const email = ref("");
 function signUp() {
   createUser({
-    name: name.value,
+    nickname: nickname.value,
     password: password.value,
     email: email.value,
+    quizzes: [],
   });
 }
 </script>
@@ -27,7 +28,7 @@ function signUp() {
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="text"
               placeholder="Name"
-              v-model="name"
+              v-model="nickname"
             />
           </div>
 
