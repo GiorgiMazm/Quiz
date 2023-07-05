@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import useUser from "~/composables/useUser";
-
+const { createUser } = useUser();
 const name = ref("");
 const password = ref("");
 const email = ref("");
-const { createUser } = useUser();
 function signUp() {
-  console.log("ee blya");
   createUser({
-    // name: name.value,
+    name: name.value,
     password: password.value,
     email: email.value,
   });

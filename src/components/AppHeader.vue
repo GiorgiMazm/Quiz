@@ -12,6 +12,12 @@
             <li class="cursor-pointer hover:text-cyan-500">
               <NuxtLink to="/quizzes">Quizzes</NuxtLink>
             </li>
+            <li class="cursor-pointer hover:text-cyan-500">
+              <NuxtLink to="/profile">profile</NuxtLink>
+            </li>
+            <li class="cursor-pointer hover:text-cyan-500">
+              <NuxtLink to="/signIn">sign in </NuxtLink>
+            </li>
           </ul>
           logo
         </nav>
