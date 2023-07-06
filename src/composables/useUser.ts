@@ -22,6 +22,11 @@ export default () => {
   }
 
   async function getUserByEmail(email: string) {
+    const { getSession } = useAuth();
+    const session = await getSession();
+    if (session.user?.image) {
+      return session.user;
+    }
     const { data, error } = await useFetch(`${url}/${email}`);
     if (error.value) {
       throw createError({

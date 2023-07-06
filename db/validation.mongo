@@ -58,9 +58,9 @@ db.createCollection("quizzes", {
        validator: {
            $jsonSchema: {
                bsonType: "object",
-               required: ["nickname", "email", "password", "quizzes"],
+               required: ["name", "email", "password", "quizzes"],
                properties: {
-                   nickname: {
+                   name: {
                        bsonType: "string",
                        description: "must be a string and is required",
                    },

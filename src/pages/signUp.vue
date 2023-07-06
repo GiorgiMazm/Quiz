@@ -1,12 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ middleware: ["guest"] });
 const { createUser } = useUser();
-const nickname = ref("");
+const name = ref("");
 const password = ref("");
 const email = ref("");
 async function signUp() {
   await createUser({
-    nickname: nickname.value,
+    name: name.value,
     password: password.value,
     email: email.value,
     quizzes: [],
@@ -31,7 +31,7 @@ async function signUp() {
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="text"
               placeholder="Name"
-              v-model="nickname"
+              v-model="name"
             />
           </div>
 
