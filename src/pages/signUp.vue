@@ -3,13 +3,15 @@ const { createUser } = useUser();
 const nickname = ref("");
 const password = ref("");
 const email = ref("");
-function signUp() {
-  createUser({
+async function signUp() {
+  await createUser({
     nickname: nickname.value,
     password: password.value,
     email: email.value,
     quizzes: [],
   });
+
+  await useRouter().push("/signIn");
 }
 </script>
 

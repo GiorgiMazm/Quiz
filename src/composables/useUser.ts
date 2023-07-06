@@ -3,8 +3,6 @@ import User from "~/types/User";
 export default () => {
   const url = "/api/user";
   async function createUser(user: User) {
-    console.log("user was created: ", user);
-
     const { error } = await useFetch(url, {
       method: "POST",
       headers: {
@@ -19,6 +17,8 @@ export default () => {
           "Something went wrong with fetching data, try again later",
       });
     }
+
+    return "User was successfully created";
   }
   return { createUser };
 };

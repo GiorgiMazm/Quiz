@@ -2,6 +2,14 @@
 const { signIn } = useAuth();
 const password = ref("");
 const email = ref("");
+
+async function login() {
+  await signIn("credentials", {
+    email: email.value,
+    password: password.value,
+    callbackUrl: "/",
+  });
+}
 </script>
 
 <template>
@@ -9,9 +17,7 @@ const email = ref("");
     <section class="bg-emerald-600 py-24">
       <div class="container mx-auto">
         <form
-          @submit.prevent="
-            signIn('credentials', { email, password, callbackUrl: '/' })
-          "
+          @submit.prevent="login"
           class="bg-white rounded-xl p-12 text-center w-3/5 mx-auto text-gray-700 min-w-[400px]"
         >
           <h1 class="pt-10 text-5xl font-bold">Sign in page</h1>
