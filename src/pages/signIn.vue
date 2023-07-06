@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: ["guest"] });
 const { signIn } = useAuth();
 const password = ref("");
 const email = ref("");
@@ -40,7 +41,7 @@ async function login() {
           </div>
 
           <button
-            class="mt-9 rounded-xl px-32 py-6 bg-green-700 hover:bg-emerald-600 hover:text-white"
+            class="mt-9 mr-5 rounded-xl px-32 py-6 bg-green-700 hover:bg-emerald-600 hover:text-white"
           >
             Sign in
           </button>
@@ -51,6 +52,15 @@ async function login() {
           >
             Sign in with github
           </button>
+
+          <div class="mt-5">
+            Don't have an account? Then just
+            <NuxtLink
+              class="text-yellow-600 font-bold cursor-pointer hover:text-cyan-500"
+              to="/signUp"
+              >Sign up
+            </NuxtLink>
+          </div>
         </form>
       </div>
     </section>

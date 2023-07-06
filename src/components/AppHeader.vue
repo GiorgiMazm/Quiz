@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { status, signOut } = useAuth();
+const isGuest = () => status.value === "unauthenticated";
+</script>
 
 <template>
   <div>
@@ -12,14 +15,25 @@
             <li class="cursor-pointer hover:text-cyan-500">
               <NuxtLink to="/quizzes">Quizzes</NuxtLink>
             </li>
-            <li class="cursor-pointer hover:text-cyan-500">
-              <NuxtLink to="/profile">profile</NuxtLink>
-            </li>
-            <li class="cursor-pointer hover:text-cyan-500">
-              <NuxtLink to="/signIn">sign in </NuxtLink>
+            <li v-if="!isGuest()" class="cursor-pointer hover:text-cyan-500">
+              <NuxtLink to="/profile">Profile</NuxtLink>
             </li>
           </ul>
-          logo
+
+          <NuxtLink
+            v-if="isGuest()"
+            class="cursor-pointer hover:text-cyan-500"
+            to="/signIn"
+            >Sign in
+          </NuxtLink>
+
+          <button
+            v-else
+            class="cursor-pointer hover:text-cyan-500"
+            @click="signOut()"
+          >
+            Logout
+          </button>
         </nav>
       </div>
     </header>

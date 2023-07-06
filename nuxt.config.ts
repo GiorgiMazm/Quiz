@@ -11,7 +11,4 @@ export default defineNuxtConfig({
   buildModules: ["@nuxt/typescript-build"],
   serverDir: "server/",
   srcDir: "src/",
-  // auth: {
-  //   globalAppMiddleware: true,
-  // },
 });

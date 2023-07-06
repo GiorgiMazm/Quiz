@@ -1,4 +1,5 @@
 <script setup lang="ts">
+definePageMeta({ middleware: ["guest"] });
 const { createUser } = useUser();
 const nickname = ref("");
 const password = ref("");
@@ -57,6 +58,15 @@ async function signUp() {
           >
             Sign up
           </button>
+
+          <div class="mt-5">
+            Already have an account? Then just
+            <NuxtLink
+              class="text-yellow-600 font-bold cursor-pointer hover:text-cyan-500"
+              to="/signIn"
+              >Sign in
+            </NuxtLink>
+          </div>
         </form>
       </div>
     </section>
