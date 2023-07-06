@@ -1,4 +1,4 @@
-import connectDb from "../plugins/connectDb";
+import connectDb from "../../plugins/connectDb";
 
 export default defineEventHandler(async (event) => {
   const client = await connectDb();
