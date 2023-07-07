@@ -2,7 +2,14 @@ import User from "../../src/types/User";
 import createValidationError from "./createCustomError";
 import connectDb from "../plugins/connectDb";
 
-function checkIfExist(user: User, field: "name" | "password" | "email") {
+export default async function (user: User) {
+  isFieldEmpty(user, "name");
+  isFieldEmpty(user, "password");
+  isFieldEmpty(user, "email");
+  isQuizzesArray(user);
+  await isEmailUnique(user);
+}
+function isFieldEmpty(user: User, field: "name" | "password" | "email") {
   if (!user[field] || user[field].trim() === "") {
     createValidationError(field);
   }
@@ -33,11 +40,4 @@ function isQuizzesArray(user: User) {
       statusMessage: "Bad Request",
     });
   }
-}
-export default async function (user: User) {
-  checkIfExist(user, "name");
-  checkIfExist(user, "password");
-  checkIfExist(user, "email");
-  isQuizzesArray(user);
-  await isEmailUnique(user);
 }

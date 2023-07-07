@@ -1,7 +1,14 @@
 import Quiz from "../../src/types/Quiz";
 import createValidationError from "./createCustomError";
 
-function checkIfExist(quiz: Quiz, field: "category" | "name" | "description") {
+export default (quiz: Quiz) => {
+  isFieldEmpty(quiz, "name");
+  isFieldEmpty(quiz, "category");
+  isFieldEmpty(quiz, "description");
+  isQuestionListArray(quiz);
+  checkQuestionListStructure(quiz);
+};
+function isFieldEmpty(quiz: Quiz, field: "category" | "name" | "description") {
   if (!quiz[field] || quiz[field].trim() === "") {
     createValidationError(field);
   }
@@ -19,18 +26,17 @@ function checkIfExistQuestion(
     createValidationError(field);
   }
 }
-export default (quiz: Quiz) => {
-  checkIfExist(quiz, "name");
-  checkIfExist(quiz, "category");
-  checkIfExist(quiz, "description");
 
+function isQuestionListArray(quiz: Quiz) {
   if (!Array.isArray(quiz.questionList) || quiz.questionList.length < 1) {
     createValidationError(
       "",
       "questionList must exist and be array of min 1 element"
     );
   }
+}
 
+function checkQuestionListStructure(quiz: Quiz) {
   quiz.questionList.forEach((question, index) => {
     if (!question.options || question.options.length !== 4) {
       createValidationError(
@@ -46,4 +52,4 @@ export default (quiz: Quiz) => {
       createValidationError("", "correctOption must be in options");
     }
   });
-};
+}
