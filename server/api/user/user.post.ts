@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
   const users = await db.collection("users");
 
   const body = await readBody(event);
+  await validateUser(body);
   await users.insertOne(body);
   return "success";
 });

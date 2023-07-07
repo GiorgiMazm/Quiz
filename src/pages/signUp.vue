@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ middleware: ["guest"] });
 const { createUser } = useUser();
+const { signIn } = useAuth();
 const name = ref("");
 const password = ref("");
 const email = ref("");
@@ -12,7 +13,13 @@ async function signUp() {
     quizzes: [],
   });
 
-  await useRouter().push("/signIn");
+  await signIn("credentials", {
+    email: email.value,
+    password: password.value,
+    callbackUrl: "/",
+  });
+
+  await useRouter().push("/");
 }
 </script>
 

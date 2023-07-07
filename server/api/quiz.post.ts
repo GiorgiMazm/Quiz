@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const quizzes = await db.collection("quizzes");
 
   const body = await readBody(event);
-  validator(body);
+  validateQuiz(body);
   await quizzes.insertOne(body);
   return "success";
 });

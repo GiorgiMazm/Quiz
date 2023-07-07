@@ -1,15 +1,6 @@
 import Quiz from "../../src/types/Quiz";
+import createValidationError from "./createCustomError";
 
-function createValidationError(
-  field: string = "",
-  message: string = `${field} must exist and can not be empty`
-) {
-  throw createError({
-    message: message,
-    statusCode: 400,
-    statusMessage: "Bad Request",
-  });
-}
 function checkIfExist(quiz: Quiz, field: "category" | "name" | "description") {
   if (!quiz[field] || quiz[field].trim() === "") {
     createValidationError(field);
@@ -33,7 +24,7 @@ export default (quiz: Quiz) => {
   checkIfExist(quiz, "category");
   checkIfExist(quiz, "description");
 
-  if (!quiz.questionList || quiz.questionList.length < 1) {
+  if (!Array.isArray(quiz.questionList) || quiz.questionList.length < 1) {
     createValidationError(
       "",
       "questionList must exist and be array of min 1 element"

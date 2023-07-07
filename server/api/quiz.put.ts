@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   const quizzes = await db.collection("quizzes");
   const newQuiz: Quiz = plainToInstance(Quiz, (await readBody(event)) as Quiz);
 
-  validator(newQuiz);
+  validateQuiz(newQuiz);
   await quizzes.updateOne(
     { _id: new ObjectId(newQuiz.id) },
     {
