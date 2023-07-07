@@ -44,7 +44,7 @@ function handleAnswer(isCorrectChosen: boolean) {
         <h1>{{ question?.title }}?</h1>
         <div class="flex justify-between items-center py-4">
           <p>Question {{ questionId }}/{{ quiz.questionAmount }}</p>
-          <img :src="question?.image" alt="light bulb" class="h-72" />
+          <img :src="question?.image" :alt="question.title" class="h-72" />
           <p>{{ correctAnswerCounter }} correct</p>
         </div>
         <h2 v-if="isAnswered">

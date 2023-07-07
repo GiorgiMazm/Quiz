@@ -48,8 +48,13 @@ async function login() {
 
           <button
             @click.prevent="signIn('github', { callbackUrl: '/' })"
-            class="mt-9 rounded-xl px-32 py-6 bg-green-700 hover:bg-emerald-600 hover:text-white"
+            class="mt-9 rounded-xl text-white px-20 py-6 bg-black"
           >
+            <img
+              class="h-14 w-14 inline mr-3"
+              src="../public/gitHubIcon.png"
+              alt="github icon"
+            />
             Sign in with github
           </button>
 

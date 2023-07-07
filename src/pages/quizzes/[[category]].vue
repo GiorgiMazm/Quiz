@@ -4,7 +4,6 @@ import { QuizCategory } from "~/types/QuizCategory";
 const route = useRoute();
 const { getQuizzes, deleteQuiz } = useQuiz();
 const router = useRouter();
-const { capitalizeFirstLetter } = useUtils();
 
 const pathFilter = capitalizeFirstLetter(
   String(route.params.category)
