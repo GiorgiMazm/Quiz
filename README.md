@@ -1,42 +1,75 @@
-# Nuxt 3 Minimal Starter
+# Quiz Project
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a Quiz project built with Nuxt.js, MongoDB, and Express.js. It allows users to create and take quizzes.
 
-## Setup
+## Table of Contents
+- [Features](#features)
+- [Technologies](#Technologies)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+- [License](#license)
 
-Make sure to install the dependencies:
+## Features
 
-```bash
-# yarn
-yarn install
+- User authentication and authorization
+- Quiz creation and management
+- Quiz taking and scoring
+- RESTful API for quiz-related operations
 
-# npm
-npm install
+## Technologies
 
-# pnpm
-pnpm install
-```
+- Nuxt 3 (for both Front and Back End)
+- Type Script
+- MongoDB
+- Tailwind
+- Sidebase
 
-## Development Server
+## Requirements
 
-Start the development server on `http://localhost:3000`
+To run this project, you need to have the following software installed on your machine:
 
-```bash
-npm run dev
-```
+- Node.js (v16 or higher)
+- MongoDB with DB with name quiz
 
-## Production
+## Installation
 
-Build the application for production:
+1. Clone the repository: git clone https://github.com/GiorgiMazm/Quiz.git
+2. Navigate to the project directory: cd Quiz
+3. Install the dependencies: npm install
+4. Create .env file with your mongodb url: DB_URL
 
-```bash
-npm run build
-```
+## Usage
 
-Locally preview production build:
+1. Start the server: npm run dev
+2. Open your web browser and access the application at `http://localhost:3000`.
 
-```bash
-npm run preview
-```
+## API Endpoints
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `/api/quiz`
+- GET: Get all quizzes
+- POST: Create a new quiz
+- PUT: Update a quiz
+
+
+- `/api/quiz/:id`
+- GET: Get a specific quiz
+- DELETE: Delete a quiz
+
+
+- `/api/user/user`
+- POST: Create a new user
+
+
+- `/api/user/:email`
+- GET: Get a specific user based on email address
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to submit a pull request or open an issue.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
