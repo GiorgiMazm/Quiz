@@ -1,6 +1,6 @@
 # Quiz Project
 
-This is a Quiz project built with Nuxt.js, MongoDB, and Express.js. It allows users to create and take quizzes.
+This is a Quiz project, that was built to practise technologies and my programming skills.
 
 ## Table of Contents
 - [Features](#features)
