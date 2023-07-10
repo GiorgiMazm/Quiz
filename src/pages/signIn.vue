@@ -41,18 +41,18 @@ async function login() {
           </div>
 
           <button
-            class="mt-9 mr-5 rounded-xl px-32 py-6 bg-green-700 hover:bg-emerald-600 hover:text-white"
+            class="mt-9 mr-5 rounded-xl px-32 py-7 bg-green-700 hover:bg-emerald-600 hover:text-white"
           >
             Sign in
           </button>
 
           <button
             @click.prevent="signIn('github', { callbackUrl: '/' })"
-            class="mt-9 rounded-xl text-white px-20 py-6 bg-black"
+            class="mt-9 rounded-xl text-white px-10 py-4 bg-black"
           >
             <img
               class="h-14 w-14 inline mr-3"
-              src="../public/gitHubIcon.png"
+              src="../gitHubIcon.png"
               alt="github icon"
             />
             Sign in with github
