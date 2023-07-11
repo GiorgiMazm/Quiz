@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ middleware: ["guest"] });
-const { createUser } = useUser();
+const { createUser } = await useUser();
 const { signIn } = useAuth();
 const name = ref("");
 const password = ref("");

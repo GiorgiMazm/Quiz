@@ -5,4 +5,5 @@ export default interface User {
   password: string;
   email: string;
   quizzes: ObjectId[];
+  admin?: boolean;
 }

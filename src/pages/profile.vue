@@ -1,10 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ middleware: "auth" });
-const { getSession } = useAuth();
-const { getUserByEmail } = useUser();
+const { getCurrentUser } = await useUser();
 
-const session = await getSession();
-const currentUser = await getUserByEmail(session.user?.email || "");
+const currentUser = await getCurrentUser();
 </script>
 
 <template>
