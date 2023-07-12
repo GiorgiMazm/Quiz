@@ -6,7 +6,7 @@ const { getCurrentUser } = await useUser();
 
 const isGuest = computed(() => status.value === "unauthenticated");
 const user = (await getCurrentUser()) as User;
-const isAdmin = computed(() => user?.admin);
+const isAdmin = computed(() => user.admin);
 </script>
 
 <template>
