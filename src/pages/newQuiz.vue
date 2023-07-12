@@ -2,20 +2,19 @@
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import Quiz from "~/types/Quiz";
 import { QuizCategory } from "~/types/QuizCategory";
+import User from "~/types/User";
+import Question from "~/types/Question";
+
+const { getCurrentUser } = await useUser();
+const user = (await getCurrentUser()) as User;
+
 const QuizCategoryList = Object.values(QuizCategory).filter(
   (category) => category !== "All"
 );
 const category: Ref<QuizCategory> = ref(QuizCategory.Education);
 const name = ref("");
 const description = ref("");
-const questions = ref<
-  Array<{
-    title: string;
-    image: string;
-    options: Array<string>;
-    correctOption: string;
-  }>
->([]);
+const questions = ref<Array<Question>>([]);
 const { createQuiz } = useQuiz();
 
 function addQuestion() {
@@ -24,6 +23,7 @@ function addQuestion() {
     correctOption: "",
     title: "",
     image: "",
+    isAnswered: false,
   });
 }
 
@@ -33,11 +33,14 @@ function deleteQuestion(index: number) {
 
 async function handleCreateQuiz() {
   await createQuiz({
-    name: name.value,
-    description: description.value,
-    questionList: questions.value,
-    category: category.value,
-  } as unknown as Quiz);
+    user: user,
+    quiz: {
+      name: name.value,
+      description: description.value,
+      questionList: questions.value,
+      category: category.value,
+    } as Quiz,
+  });
 
   await useRouter().push("/quizzes");
 }

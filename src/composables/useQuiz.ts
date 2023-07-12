@@ -1,6 +1,7 @@
 import Quiz from "~/types/Quiz";
 import { plainToInstance } from "class-transformer";
 import { QuizCategory } from "~/types/QuizCategory";
+import User from "~/types/User";
 
 export default () => {
   const url = "/api/quiz";
@@ -43,13 +44,13 @@ export default () => {
     }
   }
 
-  async function createQuiz(quiz: Quiz) {
+  async function createQuiz(neqQuiz: { user: User; quiz: Quiz }) {
     const { error } = await useFetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(quiz),
+      body: JSON.stringify(neqQuiz),
     });
     if (error.value) {
       throw createError({
