@@ -53,5 +53,18 @@ export default async () => {
     return data.value;
   }
 
-  return { createUser, getUserByEmail, getCurrentUser };
+  async function getAllUsers() {
+    const { data, error } = await useFetch(`${url}/user`);
+    if (error.value) {
+      throw createError({
+        statusCode: 404,
+        statusMessage:
+          "Something went wrong with fetching data, try again later",
+      });
+    }
+
+    return data.value as unknown as User[];
+  }
+
+  return { createUser, getUserByEmail, getCurrentUser, getAllUsers };
 };
