@@ -1,4 +1,7 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: "Quiz question",
+});
 const { getQuizById } = useQuiz();
 const route = useRoute();
 const router = useRouter();

@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useSeoMeta({
+  title: "Home",
+});
+</script>
 
 <template>
   <div>

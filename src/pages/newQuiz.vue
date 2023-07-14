@@ -5,8 +5,11 @@ import { QuizCategory } from "~/types/QuizCategory";
 import User from "~/types/User";
 import Question from "~/types/Question";
 
+useSeoMeta({
+  title: "New Quiz",
+});
 const { getCurrentUser } = await useUser();
-const user = (await getCurrentUser()) as User;
+const user = (await getCurrentUser()) as unknown as User;
 
 const QuizCategoryList = Object.values(QuizCategory).filter(
   (category) => category !== "All"

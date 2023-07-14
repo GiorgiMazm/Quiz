@@ -3,6 +3,9 @@ import { XMarkIcon } from "@heroicons/vue/24/solid";
 import User from "~/types/User";
 
 definePageMeta({ middleware: ["admin"] });
+useSeoMeta({
+  title: "Admin view",
+});
 const { getAllUsers, deleteUser } = await useUser();
 const users = await getAllUsers();
 const userList = ref(users);

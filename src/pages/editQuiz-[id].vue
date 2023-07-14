@@ -4,6 +4,9 @@ import { XMarkIcon } from "@heroicons/vue/24/solid";
 import Question from "~/types/Question";
 import { QuizCategory } from "~/types/QuizCategory";
 
+useSeoMeta({
+  title: "Edit Quiz",
+});
 const { getQuizById, updateQuiz } = useQuiz();
 const quiz: Quiz = await getQuizById(useRoute().params?.id.toString());
 const questions = reactive(quiz.questionList);

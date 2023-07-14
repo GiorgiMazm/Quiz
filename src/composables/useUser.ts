@@ -24,21 +24,6 @@ export default async () => {
     return "User was successfully created";
   }
 
-  async function getUserByEmail(email: string) {
-    const { data, error } = await useFetch(`${url}/${email}`, {
-      method: "GET",
-    });
-    if (error.value) {
-      throw createError({
-        statusCode: 404,
-        statusMessage:
-          "Something went wrong with fetching data, try again later",
-      });
-    }
-
-    return data.value;
-  }
-
   async function getCurrentUser() {
     if (session.user?.image) {
       return session.user;
@@ -89,7 +74,6 @@ export default async () => {
 
   return {
     createUser,
-    getUserByEmail,
     getCurrentUser,
     getAllUsers,
     deleteUser,

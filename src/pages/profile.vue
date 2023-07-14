@@ -3,6 +3,9 @@ import User from "~/types/User";
 import Quiz from "~/types/Quiz";
 import { Ref } from "vue";
 
+useSeoMeta({
+  title: "Your Profile",
+});
 definePageMeta({ middleware: "auth" });
 const { getCurrentUser } = await useUser();
 const { getQuizById } = useQuiz();

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 definePageMeta({ middleware: ["guest"] });
+useSeoMeta({
+  title: "Sign up",
+});
 const { createUser } = await useUser();
 const { signIn } = useAuth();
 const name = ref("");

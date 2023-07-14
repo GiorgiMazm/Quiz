@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { QuizCategory } from "~/types/QuizCategory";
 
+useSeoMeta({
+  title: "Quizzes list",
+});
 const route = useRoute();
 const { getQuizzes, deleteQuiz } = useQuiz();
 const router = useRouter();

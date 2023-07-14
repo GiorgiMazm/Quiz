@@ -1,4 +1,7 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: "Quiz results",
+});
 const route = useRoute();
 const { getQuizById } = useQuiz();
 const quiz = await getQuizById(String(route.params.quizId));
