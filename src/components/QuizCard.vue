@@ -16,7 +16,7 @@ function editQuiz() {
   useRouter().push(`/editQuiz-${props.quiz.id}`);
 }
 
-const user = (await getCurrentUser()) as User;
+const user = (await getCurrentUser()) as unknown as User;
 const canUserInteract = computed(() => {
   return user.admin || user.quizzes?.find((quiz) => quiz === props.quiz?.id);
 });
