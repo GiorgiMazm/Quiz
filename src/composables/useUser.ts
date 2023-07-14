@@ -25,7 +25,9 @@ export default async () => {
   }
 
   async function getUserByEmail(email: string) {
-    const { data, error } = await useFetch(`${url}/${email}`);
+    const { data, error } = await useFetch(`${url}/${email}`, {
+      method: "GET",
+    });
     if (error.value) {
       throw createError({
         statusCode: 404,
@@ -41,7 +43,9 @@ export default async () => {
     if (session.user?.image) {
       return session.user;
     }
-    const { data, error } = await useFetch(`${url}/${session.user?.email}`);
+    const { data, error } = await useFetch(`${url}/${session.user?.email}`, {
+      method: "GET",
+    });
     if (error.value) {
       throw createError({
         statusCode: 404,
@@ -54,7 +58,9 @@ export default async () => {
   }
 
   async function getAllUsers() {
-    const { data, error } = await useFetch(`${url}/user`);
+    const { data, error } = await useFetch(`${url}/user`, {
+      method: "GET",
+    });
     if (error.value) {
       throw createError({
         statusCode: 404,
@@ -66,5 +72,26 @@ export default async () => {
     return data.value as unknown as User[];
   }
 
-  return { createUser, getUserByEmail, getCurrentUser, getAllUsers };
+  async function deleteUser(email: string) {
+    const { data, error } = await useFetch(`${url}/${email}`, {
+      // @ts-ignore
+      method: "DELETE",
+    });
+    if (error.value) {
+      throw createError({
+        statusCode: 404,
+        statusMessage:
+          "Something went wrong with fetching data, try again later",
+      });
+    }
+    return data.value;
+  }
+
+  return {
+    createUser,
+    getUserByEmail,
+    getCurrentUser,
+    getAllUsers,
+    deleteUser,
+  };
 };

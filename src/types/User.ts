@@ -6,4 +6,6 @@ export default interface User {
   email: string;
   quizzes: ObjectId[];
   admin?: boolean;
+  _id?: ObjectId;
+  image?: string;
 }

@@ -6,9 +6,7 @@ import { Ref } from "vue";
 definePageMeta({ middleware: "auth" });
 const { getCurrentUser } = await useUser();
 const { getQuizById } = useQuiz();
-const user: User & { image: string } = Object.assign(
-  (await getCurrentUser()) as Object
-);
+const user: User = Object.assign((await getCurrentUser()) as unknown as User);
 
 const quizzes: Ref<Quiz[]> = ref([]);
 onBeforeMount(async () => {
