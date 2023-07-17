@@ -35,6 +35,10 @@ function deleteQuestion(index: number) {
 }
 
 async function handleCreateQuiz() {
+  for (const question of questions.value) {
+    question.image = (await convertImage(question as Question)) as string;
+  }
+
   await createQuiz({
     user: user,
     quiz: {
@@ -46,6 +50,15 @@ async function handleCreateQuiz() {
   });
 
   await useRouter().push("/quizzes");
+}
+
+function convertImage(question: Question) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(question.image as unknown as Blob);
+    fileReader.onload = () => resolve(fileReader.result);
+    fileReader.onerror = (error) => reject(error);
+  });
 }
 </script>
 
@@ -161,9 +174,10 @@ async function handleCreateQuiz() {
                 <label>Image link</label>
                 <input
                   class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
-                  type="text"
+                  type="file"
                   placeholder="Image url"
-                  v-model="question.image"
+                  accept="jpg, png, jpeg"
+                  @change="(event) => (question.image = (event.target as HTMLInputElement).files![0] as unknown as string)"
                 />
               </div>
             </div>
