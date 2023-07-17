@@ -30,6 +30,13 @@ function handleQuizUpdate() {
   updateQuiz(quiz);
   useRouter().push("/quizzes");
 }
+
+function convertImage(image: Blob, question: Question) {
+  console.log(image);
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(image);
+  fileReader.onload = () => (question.image = String(fileReader.result));
+}
 </script>
 
 <template>
@@ -145,12 +152,21 @@ function handleQuizUpdate() {
               </div>
 
               <div>
-                <label>Image link</label>
+                <p>
+                  Image
+                  <img
+                    class="h-44"
+                    :src="question.image"
+                    :alt="question.title"
+                  />
+                </p>
+                <label>Upload new</label>
                 <input
                   class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
-                  type="text"
+                  type="file"
                   placeholder="Image url"
-                  v-model="question.image"
+                  accept="jpg, png, jpeg"
+                  @change="(event) => convertImage((event.target as HTMLInputElement).files![0] as unknown as Blob, question as Question)"
                 />
               </div>
             </div>
