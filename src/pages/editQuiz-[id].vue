@@ -30,13 +30,6 @@ function handleQuizUpdate() {
   updateQuiz(quiz);
   useRouter().push("/quizzes");
 }
-
-function convertImage(image: Blob, question: Question) {
-  console.log(image);
-  const fileReader = new FileReader();
-  fileReader.readAsDataURL(image);
-  fileReader.onload = () => (question.image = String(fileReader.result));
-}
 </script>
 
 <template>
@@ -155,6 +148,7 @@ function convertImage(image: Blob, question: Question) {
                 <p>
                   Image
                   <img
+                    v-if="question.image"
                     class="h-44"
                     :src="question.image"
                     :alt="question.title"
