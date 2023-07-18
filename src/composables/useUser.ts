@@ -39,7 +39,7 @@ export default async () => {
       });
     }
 
-    return data.value;
+    return data.value as unknown as User;
   }
 
   async function getAllUsers() {

@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { QuizCategory } from "~/types/QuizCategory";
+import User from "~/types/User";
+import { ObjectId } from "bson";
 
 useSeoMeta({
   title: "Quizzes list",
 });
 const route = useRoute();
 const { getQuizzes, deleteQuiz } = useQuiz();
+const { getCurrentUser } = await useUser();
 const router = useRouter();
 
 const pathFilter = capitalizeFirstLetter(
   String(route.params.category)
 ) as QuizCategory;
 const filter = ref(QuizCategory[pathFilter] || QuizCategory.All);
-let quizList = ref(await getQuizzes(filter.value));
+let quizList = ref(
+  await getQuizzes(filter.value, route.query.user as unknown as ObjectId)
+);
 async function handleDeletingQuiz(id: number) {
   await deleteQuiz(id);
   quizList.value = await getQuizzes(filter.value);
@@ -20,10 +25,30 @@ async function handleDeletingQuiz(id: number) {
 
 function filterQuizzes() {
   if (filter.value === QuizCategory.All) {
-    router.push("/quizzes");
-    return;
+    if (route.query.user) {
+      router.push(`/quizzes?user=${route.query.user}`);
+    } else router.push(`/quizzes`);
   }
-  router.push(`/quizzes/${filter.value.toLowerCase()}`);
+  if (route.query.user) {
+    router.push(
+      `/quizzes/${filter.value.toLowerCase()}?user=${route.query.user}`
+    );
+  } else router.push(`/quizzes/${filter.value.toLowerCase()}`);
+}
+
+async function showUserQuizzes() {
+  const user = (await getCurrentUser()) as User;
+  await router.push(`/quizzes/${filter.value.toLowerCase()}?user=${user._id}`);
+
+  window.location.reload();
+}
+
+async function showAllQuizzes() {
+  if (filter.value === QuizCategory.All) {
+    await router.push(`/quizzes`);
+  }
+  await router.push(`/quizzes/${filter.value.toLowerCase()}`);
+  window.location.reload();
 }
 </script>
 
@@ -47,6 +72,9 @@ function filterQuizzes() {
                 {{ option }}
               </option>
             </select>
+
+            <button @click="showUserQuizzes" class="ml-5">My quizzes</button>
+            <button @click="showAllQuizzes" class="ml-5">All quizzes</button>
           </div>
           <QuizCard
             @handleDeletingQuiz="handleDeletingQuiz"

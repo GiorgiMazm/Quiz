@@ -2,6 +2,7 @@ import Quiz from "~/types/Quiz";
 import { plainToInstance } from "class-transformer";
 import { QuizCategory } from "~/types/QuizCategory";
 import User from "~/types/User";
+import { ObjectId } from "bson";
 
 export default () => {
   const url = "/api/quiz";
@@ -16,9 +17,12 @@ export default () => {
     }
     return plainToInstance(Quiz, data.value);
   }
-  async function getQuizzes(filter: QuizCategory) {
+  async function getQuizzes(
+    filter: QuizCategory,
+    user: ObjectId | undefined = undefined
+  ) {
     const { error, data } = await useFetch(url, {
-      params: { filter: filter },
+      params: { filter: filter, user: user },
     });
     if (error.value) {
       throw createError({
