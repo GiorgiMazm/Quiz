@@ -24,10 +24,15 @@ async function handleDeletingQuiz(id: number) {
 }
 
 function filterQuizzes() {
+  console.log(filter.value === QuizCategory.All);
   if (filter.value === QuizCategory.All) {
     if (route.query.user) {
       router.push(`/quizzes?user=${route.query.user}`);
-    } else router.push(`/quizzes`);
+      return;
+    } else {
+      router.push(`/quizzes`);
+      return;
+    }
   }
   if (route.query.user) {
     router.push(
@@ -38,14 +43,20 @@ function filterQuizzes() {
 
 async function showUserQuizzes() {
   const user = (await getCurrentUser()) as User;
+  if (filter.value === QuizCategory.All) {
+    await router.push(`/quizzes?user=${user._id}`);
+    window.location.reload();
+    return;
+  }
   await router.push(`/quizzes/${filter.value.toLowerCase()}?user=${user._id}`);
-
   window.location.reload();
 }
 
 async function showAllQuizzes() {
   if (filter.value === QuizCategory.All) {
     await router.push(`/quizzes`);
+    window.location.reload();
+    return;
   }
   await router.push(`/quizzes/${filter.value.toLowerCase()}`);
   window.location.reload();
