@@ -1,16 +1,26 @@
 <script setup lang="ts">
+import { email, required } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+
 useSeoMeta({
   title: "Sign in",
 });
 definePageMeta({ middleware: ["guest"] });
-const { signIn } = useAuth();
-const password = ref("");
-const email = ref("");
 
+const formData = reactive({
+  password: "",
+  email: "",
+});
+const rules = {
+  password: { required },
+  email: { required, email },
+};
+const validation = useVuelidate(rules, formData);
+const { signIn } = useAuth();
 async function login() {
+  if (validation.value.$invalid) return;
   await signIn("credentials", {
-    email: email.value,
-    password: password.value,
+    ...formData,
     callbackUrl: "/",
   });
 }
@@ -27,19 +37,28 @@ async function login() {
           <h1 class="pt-10 text-5xl font-bold">Sign in page</h1>
 
           <div>
+            <p class="text-red-600 ml-3 mt-6" v-if="validation.email.$invalid">
+              Email must be valid
+            </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="email"
               placeholder="Email"
-              v-model="email"
+              v-model="formData.email"
             />
           </div>
           <div>
+            <p
+              class="text-red-600 ml-3 mt-6"
+              v-if="validation.password.$invalid"
+            >
+              Password is required
+            </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="password"
               placeholder="Password"
-              v-model="password"
+              v-model="formData.password"
             />
           </div>
 

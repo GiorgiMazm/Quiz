@@ -1,24 +1,36 @@
 <script setup lang="ts">
+import { email, required } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+
 definePageMeta({ middleware: ["guest"] });
 useSeoMeta({
   title: "Sign up",
 });
+
+const formData = reactive({
+  name: "",
+  password: "",
+  email: "",
+});
+const rules = {
+  name: { required },
+  password: { required },
+  email: { required, email },
+};
+const validation = useVuelidate(rules, formData);
 const { createUser } = await useUser();
 const { signIn } = useAuth();
-const name = ref("");
-const password = ref("");
-const email = ref("");
+
 async function signUp() {
+  if (validation.value.$invalid) return;
   await createUser({
-    name: name.value,
-    password: password.value,
-    email: email.value,
+    ...formData,
     quizzes: [],
   });
 
   await signIn("credentials", {
-    email: email.value,
-    password: password.value,
+    email: formData.email,
+    password: formData.password,
     callbackUrl: "/",
   });
 
@@ -37,29 +49,41 @@ async function signUp() {
           <h1 class="pt-10 text-5xl font-bold">Sign up page</h1>
 
           <div>
+            <p class="text-red-600 ml-3 mt-6" v-if="validation.name.$invalid">
+              Name is required
+            </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="text"
               placeholder="Name"
-              v-model="name"
+              v-model="formData.name"
             />
           </div>
 
           <div>
+            <p
+              class="text-red-600 ml-3 mt-6"
+              v-if="validation.password.$invalid"
+            >
+              Password is required
+            </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="password"
               placeholder="Password"
-              v-model="password"
+              v-model="formData.password"
             />
           </div>
 
           <div>
+            <p class="text-red-600 ml-3 mt-6" v-if="validation.email.$invalid">
+              Email must be valid
+            </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="email"
               placeholder="Email"
-              v-model="email"
+              v-model="formData.email"
             />
           </div>
 
