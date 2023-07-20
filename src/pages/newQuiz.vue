@@ -6,6 +6,7 @@ import User from "~/types/User";
 import Question from "~/types/Question";
 import { required } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import ValidationError from "~/types/ValidatationError";
 
 const questions = ref<Array<Question>>([]);
 
@@ -46,14 +47,10 @@ function validateQuestions() {
   return result;
 }
 
-const isQuestionValid = reactive({ isValid: true, errorMessage: "" });
-questions.value.push({
-  options: [],
-  correctOption: "",
-  title: "",
-  image: "",
-  isAnswered: false,
-});
+const isQuestionValid = reactive({
+  errorMessage: "",
+  isValid: true,
+}) as ValidationError;
 
 useSeoMeta({
   title: "New Quiz",
@@ -75,6 +72,7 @@ function addQuestion() {
     image: "",
     isAnswered: false,
   });
+  validateQuestions();
 }
 
 function deleteQuestion(index: number) {
@@ -111,7 +109,7 @@ async function handleCreateQuiz() {
               <input
                 class="ml-2 px-2 py-1 rounded-xl w-3/5"
                 type="text"
-                placeholder="name"
+                placeholder="Name"
                 v-model="formData.name"
               />
               <span
@@ -161,13 +159,13 @@ async function handleCreateQuiz() {
                   class="text-red-600 pb-3 ml-3"
                   v-if="!isQuestionValid.isValid"
                 >
-                  {{ isQuestionValid.errorMessage }}
+                  Question is not valid: {{ isQuestionValid.errorMessage }}
                 </p>
                 <label>Question</label>
                 <input
                   class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
                   type="text"
-                  placeholder="question..."
+                  placeholder="Title"
                   v-model="question.title"
                   @keyup="validateQuestions"
                 />

@@ -8,8 +8,5 @@ export default defineEventHandler(async (event) => {
   const db = await client.db("quiz");
   const usersCollection = await db.collection("users");
   const users = await usersCollection.find().toArray();
-  return (
-    users.find((user) => user.email === event.context.params?.email) ||
-    "Not found"
-  );
+  return users.find((user) => user.email === event.context.params?.email) || "";
 });

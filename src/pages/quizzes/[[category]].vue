@@ -11,6 +11,8 @@ const { getQuizzes, deleteQuiz } = useQuiz();
 const { getCurrentUser } = await useUser();
 const router = useRouter();
 
+const user = (await getCurrentUser()) as User;
+
 const pathFilter = capitalizeFirstLetter(
   String(route.params.category)
 ) as QuizCategory;
@@ -42,7 +44,6 @@ function filterQuizzes() {
 }
 
 async function showUserQuizzes() {
-  const user = (await getCurrentUser()) as User;
   if (filter.value === QuizCategory.All) {
     await router.push(`/quizzes?user=${user._id}`);
     window.location.reload();
@@ -84,8 +85,10 @@ async function showAllQuizzes() {
               </option>
             </select>
 
-            <button @click="showUserQuizzes" class="ml-5">My quizzes</button>
-            <button @click="showAllQuizzes" class="ml-5">All quizzes</button>
+            <button @click="showUserQuizzes" class="ml-5" v-if="user">
+              My quizzes
+            </button>
+            <button @click="showAllQuizzes" class="ml-5">Global quizzes</button>
           </div>
           <QuizCard
             @handleDeletingQuiz="handleDeletingQuiz"
