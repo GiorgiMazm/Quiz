@@ -2,10 +2,9 @@ import connectDb from "../plugins/connectDb";
 import { ObjectId } from "bson";
 
 export default defineEventHandler(async (event) => {
-  const client = await connectDb();
-  if (!client) return;
+  const db = await connectDb();
+  if (!db) return;
 
-  const db = await client.db("quiz");
   const quizzes = await db.collection("quizzes");
   const users = await db.collection("users");
   const body = await readBody(event);

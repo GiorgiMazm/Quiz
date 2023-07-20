@@ -19,9 +19,9 @@ export default NuxtAuthHandler({
     CredentialProvider.default({
       name: "Credentials",
       async authorize(credentials: any) {
-        const client = await connectDb();
-        if (!client) return;
-        const db = await client.db("quiz");
+        const db = await connectDb();
+        if (!db) return;
+
         const users = await db.collection("users").find().toArray();
 
         return users.find(

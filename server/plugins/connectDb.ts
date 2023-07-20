@@ -5,7 +5,9 @@ export default async () => {
   const client = new MongoClient(runtimeConfig.dbUrl);
   try {
     await client.connect();
-    return client;
+    if (!client) return;
+
+    return await client.db("quiz");
   } catch (error) {
     console.log(error);
   }

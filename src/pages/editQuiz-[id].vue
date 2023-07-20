@@ -79,7 +79,12 @@ function deleteQuestion(index: number) {
 
 function handleQuizUpdate() {
   if (!validateQuestions() || validation.value.$invalid) return;
-  updateQuiz(quiz);
+
+  updateQuiz({
+    ...formData,
+    _questionList: quiz.questionList,
+    _id: quiz.id,
+  } as unknown as Quiz);
   useRouter().push("/quizzes");
 }
 </script>

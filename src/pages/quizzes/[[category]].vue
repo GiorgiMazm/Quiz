@@ -26,7 +26,6 @@ async function handleDeletingQuiz(id: number) {
 }
 
 function filterQuizzes() {
-  console.log(filter.value === QuizCategory.All);
   if (filter.value === QuizCategory.All) {
     if (route.query.user) {
       router.push(`/quizzes?user=${route.query.user}`);

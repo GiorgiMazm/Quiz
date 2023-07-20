@@ -11,7 +11,6 @@ const users = await getAllUsers();
 const userList = ref(users);
 
 async function handleDelete(user: User) {
-  console.log(user._id);
   await deleteUser(user.email);
   userList.value = await getAllUsers();
 }

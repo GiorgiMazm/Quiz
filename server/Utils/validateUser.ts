@@ -16,10 +16,9 @@ function isFieldEmpty(user: User, field: "name" | "password" | "email") {
 }
 
 async function isEmailUnique(newUser: User) {
-  const client = await connectDb();
-  if (!client) return;
+  const db = await connectDb();
+  if (!db) return;
 
-  const db = await client.db("quiz");
   const collection = await db.collection("users");
   const users = await collection.find().toArray();
 
