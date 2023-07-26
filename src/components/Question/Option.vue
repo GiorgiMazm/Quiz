@@ -23,20 +23,18 @@ function chooseOption() {
   } else divCLass.value += " bg-red-600";
 }
 const divCLass = ref(
-  "text-center font-bold text-4xl text-gray-300 bg-gray-600 m-2 py-4 cursor-pointer"
+  "w-[46%] text-center font-bold text-4xl text-gray-300 bg-gray-600 m-2 py-4 cursor-pointer"
 );
 </script>
 
 <template>
-  <div class="w-1/2">
-    <div
-      :class="divCLass"
-      @click.once="
-        chooseOption();
-        $emit('answered', isCorrectChosen);
-      "
-    >
-      <span> {{ props.option }} </span>
-    </div>
+  <div
+    :class="divCLass"
+    @click.once="
+      chooseOption();
+      $emit('answered', isCorrectChosen);
+    "
+  >
+    <span> {{ props.option }} </span>
   </div>
 </template>

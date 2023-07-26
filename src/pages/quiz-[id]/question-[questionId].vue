@@ -32,6 +32,11 @@ function handleAnswer(isCorrectChosen: boolean) {
     isAnswered.value = true;
   }
 }
+
+function getAnswerColor(option: string) {
+  if (!isAnswered.value) return;
+  if (option === question.correctOption) return "bg-green-600";
+}
 </script>
 
 <template>
@@ -65,7 +70,7 @@ function handleAnswer(isCorrectChosen: boolean) {
             next question
           </NuxtLink>
         </h2>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap justify-center">
           <QuestionOption
             v-for="(option, index) in question.options"
             :question="question"
@@ -73,6 +78,7 @@ function handleAnswer(isCorrectChosen: boolean) {
             :key="index"
             @answered.once="handleAnswer"
             :disabled="isAnswered"
+            :class="getAnswerColor(option)"
           />
         </div>
       </div>
