@@ -17,20 +17,6 @@ export default defineEventHandler(async (event) => {
     return quizArray?.quizzes;
   }
 
-  // if (!filter || (filter === "All" && !user)) {
-  //   return quizzes.find().toArray();
-  // } else if (!filter || (filter === "All" && user)) {
-  //   const quizIds = await loh(String(user));
-  //   return await quizzes.find({ _id: { $in: quizIds } }).toArray();
-  // } else if (filter && user) {
-  //   const quizIds = await loh(String(user));
-  //   return await quizzes
-  //     .find({ _id: { $in: quizIds }, category: filter })
-  //     .toArray();
-  // } else {
-  //   return quizzes.find({ category: filter }).toArray();
-  // }
-
   interface FilterQuery {
     category?: string;
     _id?: { $in: ObjectId[] };

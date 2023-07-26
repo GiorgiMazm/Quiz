@@ -84,10 +84,12 @@ async function showAllQuizzes() {
               </option>
             </select>
 
-            <button @click="showUserQuizzes" class="ml-5" v-if="user">
-              My quizzes
-            </button>
-            <button @click="showAllQuizzes" class="ml-5">Global quizzes</button>
+            <div class="inline" v-if="user">
+              <button @click="showUserQuizzes" class="ml-5">My quizzes</button>
+              <button @click="showAllQuizzes" class="ml-5">
+                Global quizzes
+              </button>
+            </div>
           </div>
           <QuizCard
             @handleDeletingQuiz="handleDeletingQuiz"
