@@ -5,6 +5,7 @@ useSeoMeta({
 const { getQuizById } = useQuiz();
 const route = useRoute();
 const router = useRouter();
+
 const quiz = await getQuizById(String(route.params.id));
 const questionId = +route.params.questionId;
 const question = quiz.questionList[questionId - 1];
@@ -24,18 +25,18 @@ const getNextQuestionLink = computed(() => {
   }`;
 });
 function handleAnswer(isCorrectChosen: boolean) {
-  if (!isAnswered.value) {
-    isCorrectAnswerChosen.value = isCorrectChosen;
-    if (isCorrectChosen) {
-      correctAnswerCounter.value++;
-    }
-    isAnswered.value = true;
+  if (isAnswered.value) return;
+  isCorrectAnswerChosen.value = isCorrectChosen;
+  if (isCorrectChosen) {
+    correctAnswerCounter.value++;
   }
+  isAnswered.value = true;
 }
 
-function getAnswerColor(option: string) {
-  if (!isAnswered.value) return;
+function getOptionColor(option: string) {
+  if (!isAnswered.value) return "bg-gray-600";
   if (option === question.correctOption) return "bg-green-600";
+  else return "bg-red-600";
 }
 </script>
 
@@ -77,8 +78,7 @@ function getAnswerColor(option: string) {
             :option="option"
             :key="index"
             @answered.once="handleAnswer"
-            :disabled="isAnswered"
-            :class="getAnswerColor(option)"
+            :class="getOptionColor(option)"
           />
         </div>
       </div>
