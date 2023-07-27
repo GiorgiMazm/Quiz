@@ -7,14 +7,20 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "ts": "vue-tsc --noEmit --watch"
+    "ts": "vue-tsc --noEmit --watch",
+    "test": "vitest --reporter verbose --globals"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^3.6.5",
     "@sidebase/nuxt-auth": "^0.6.0-beta.3",
     "@types/node": "^18",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/test-utils": "^2.4.1",
     "cypress": "^12.17.2",
     "eslint": "^8.41.0",
+    "jsdom": "^22.1.0",
     "nuxt": "^3.5.1",
+    "vitest": "^0.33.0",
     "vue-tsc": "^1.6.5"
   },
   "dependencies": {
