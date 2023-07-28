@@ -74,7 +74,7 @@ async function login() {
           >
             <img
               class="h-14 w-14 inline mr-3"
-              src="../gitHubIcon.png"
+              src="/gitHubIcon.png"
               alt="github icon"
             />
             Sign in with github
