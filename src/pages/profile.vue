@@ -38,9 +38,11 @@ onBeforeMount(async () => {
               <li
                 class="mx-5 mt-2 text-red-600 hover:text-cyan-400 inline-block"
               >
-                <NuxtLink :to="'/quizView-' + quiz?.id">{{
-                  quiz?.name
-                }}</NuxtLink>
+                <NuxtLink
+                  aria-label="Navigate to your Quiz"
+                  :to="'/quizView-' + quiz?.id"
+                  >{{ quiz?.name }}</NuxtLink
+                >
               </li>
             </ul>
           </div>

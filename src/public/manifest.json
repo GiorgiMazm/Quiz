@@ -1,0 +1,6 @@
+{  "name": "Quiz App",
+  "short_name": "Quiz",
+  "description": "This is a Quiz app, where you can create an account, store your list of quizzes, share with friends of students and have fun!.",
+  "display": "standalone",
+  "start_url":	"/index.html"
+}

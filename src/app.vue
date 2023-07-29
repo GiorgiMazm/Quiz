@@ -1,4 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  htmlAttrs: {
+    lang: "en",
+  },
+  meta: [
+    {
+      name: "description",
+      content: "My quiz app",
+    },
+  ],
+  link: [{ rel: "manifest", href: "manifest.json" }],
+});
+</script>
 <template>
   <div>
     <AppHeader />
