@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@sidebase/nuxt-auth", "@nuxtjs/i18n"],
   i18n: {
-    vueI18n: "./i18n.config.ts", // if you are using custom path, default
+    vueI18n: "./translations/i18n.config.ts",
   },
   // @ts-ignore
   runtimeConfig: {
