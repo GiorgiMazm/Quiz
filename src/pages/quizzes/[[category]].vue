@@ -67,12 +67,12 @@ async function showAllQuizzes() {
   <div>
     <section>
       <div class="mx-auto container text-center">
-        <h1 class="text-5xl my-5">Choose your quiz!!</h1>
+        <h1 class="text-5xl my-5">{{ $t("quizzes.title") }}!!</h1>
         <div class="flex flex-col items-center">
-          <NuxtLink to="/newQuiz">Create new quiz</NuxtLink>
+          <NuxtLink to="/newQuiz">{{ $t("quizzes.new") }}</NuxtLink>
 
           <div class="mt-3">
-            <label>Category</label>
+            <label>{{ $t("quizzes.category") }}</label>
             <select
               @change="filterQuizzes"
               name="correctAnswer"
@@ -80,14 +80,16 @@ async function showAllQuizzes() {
               v-model="filter"
             >
               <option v-for="option in QuizCategory" :value="option">
-                {{ option }}
+                {{ $t(`category.${option.toLowerCase()}`) }}
               </option>
             </select>
 
             <div class="inline" v-if="user">
-              <button @click="showUserQuizzes" class="ml-5">My quizzes</button>
+              <button @click="showUserQuizzes" class="ml-5">
+                {{ $t("quizzes.userQuizzes") }}
+              </button>
               <button @click="showAllQuizzes" class="ml-5">
-                Global quizzes
+                {{ $t("quizzes.globalQuizzes") }}
               </button>
             </div>
           </div>

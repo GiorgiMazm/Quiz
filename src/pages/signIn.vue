@@ -34,16 +34,16 @@ async function login() {
           @submit.prevent="login"
           class="bg-white rounded-xl p-12 text-center w-3/5 mx-auto text-gray-700 min-w-[400px]"
         >
-          <h1 class="pt-10 text-5xl font-bold">Sign in page</h1>
+          <h1 class="pt-10 text-5xl font-bold">{{ $t("signIn.title") }}</h1>
 
           <div>
             <p class="text-red-600 ml-3 mt-6" v-if="validation.email.$invalid">
-              Email must be valid
+              {{ $t("emailInvalid") }}
             </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="email"
-              placeholder="Email"
+              :placeholder="$t('email')"
               v-model="formData.email"
             />
           </div>
@@ -52,12 +52,12 @@ async function login() {
               class="text-red-600 ml-3 mt-6"
               v-if="validation.password.$invalid"
             >
-              Password is required
+              {{ $t("passwordInvalid") }}
             </p>
             <input
               class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
               type="password"
-              placeholder="Password"
+              :placeholder="$t('password')"
               v-model="formData.password"
             />
           </div>
@@ -65,7 +65,7 @@ async function login() {
           <button
             class="mt-9 mr-5 rounded-xl px-32 py-7 bg-green-700 hover:bg-emerald-600 hover:text-white"
           >
-            Sign in
+            {{ $t("signIn.submit") }}
           </button>
 
           <button
@@ -77,15 +77,15 @@ async function login() {
               src="/gitHubIcon.png"
               alt="github icon"
             />
-            Sign in with github
+            {{ $t("signIn.github") }}
           </button>
 
           <div class="mt-5">
-            Don't have an account? Then just
+            {{ $t("signIn.redirect") }}
             <NuxtLink
               class="text-yellow-600 font-bold cursor-pointer hover:text-cyan-500"
               to="/signUp"
-              >Sign up
+              >{{ $t("signUp.name") }}
             </NuxtLink>
           </div>
         </form>

@@ -19,16 +19,17 @@ if (
     <section>
       <div class="container mx-auto text-center">
         <h1 class="text-6xl pt-44">
-          Congratulation! You have just finished a quiz "{{ quiz.name }}"
+          {{ $t("result.title") }} "{{ quiz.name }}"
         </h1>
         <h2 class="text-4xl">
-          You got {{ route.query.correct }} correct answers of
-          {{ quiz.questionAmount }} questions
+          {{ $t("result.userHas") }} {{ route.query.correct }} /
+          {{ quiz.questionAmount }}
+          {{ $t("result.right") }}
         </h2>
         <NuxtLink
           to="/quizzes"
           class="bg-sky-600 py-4 px-7 rounded-xl mt-7 inline-block text-xl hover:bg-sky-400 cursor-pointer"
-          >Go to all quizzes</NuxtLink
+          >{{ $t("result.redirect") }}</NuxtLink
         >
       </div>
     </section>

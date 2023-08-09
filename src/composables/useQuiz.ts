@@ -15,7 +15,7 @@ export default () => {
           "Something went wrong with fetching data, try again later",
       });
     }
-    return plainToInstance(Quiz, data.value);
+    return plainToInstance(Quiz, data.value) as Quiz;
   }
   async function getQuizzes(
     filter: QuizCategory,

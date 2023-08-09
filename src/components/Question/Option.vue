@@ -12,6 +12,7 @@ const props = defineProps({
     required: true,
   },
 });
+
 const isCorrectChosen = props.question.correctOption === props.option;
 function chooseOption() {
   if (props.question.isAnswered) return;

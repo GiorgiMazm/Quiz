@@ -25,8 +25,10 @@ const canUserInteract = computed(() => {
 <template>
   <div class="flex w-[50%] justify-between border-2 my-2 p-3">
     <p>{{ props.quiz.name }}</p>
-    <p>Amount of questions: {{ props.quiz.questionAmount }}</p>
-    <NuxtLink class="hover:text-red-600" :to="quizLink">Start quiz</NuxtLink>
+    <p>{{ $t("quizzes.questionAmount") }} {{ props.quiz.questionAmount }}</p>
+    <NuxtLink class="hover:text-red-600" :to="quizLink">{{
+      $t("quizzes.open")
+    }}</NuxtLink>
     <div class="flex" v-if="canUserInteract">
       <PencilIcon
         class="h-6 w-6 cursor-pointer hover:text-red-800 mr-4"

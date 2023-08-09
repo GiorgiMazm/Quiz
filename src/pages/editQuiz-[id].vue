@@ -96,7 +96,7 @@ function handleQuizUpdate() {
         <div>
           <form>
             <h1 class="text-center text-5xl font-bold text-gray-700">
-              Edit Quiz
+              {{ $t("editQuiz.title") }}
             </h1>
             <div class="mt-5">
               <label>Quiz name</label>

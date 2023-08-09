@@ -102,7 +102,7 @@ async function handleCreateQuiz() {
         <div>
           <form>
             <h1 class="text-center text-5xl font-bold text-gray-700">
-              Create Quiz
+              {{ $t("newQuiz.title") }}
             </h1>
             <div class="mt-5">
               <label>Quiz name</label>

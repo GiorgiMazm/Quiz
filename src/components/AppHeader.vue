@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import User from "~/types/User";
 
+const { locale } = useI18n();
 const { status, signOut } = useAuth();
 const { getCurrentUser } = await useUser();
 
@@ -16,22 +17,26 @@ const isAdmin = computed(() => user.admin);
         <nav class="flex justify-between">
           <ul class="flex w-1/5 justify-between">
             <li class="cursor-pointer hover:text-cyan-500">
-              <NuxtLink to="/">Home</NuxtLink>
+              <NuxtLink to="/">{{ $t("home.name") }} </NuxtLink>
             </li>
             <li class="cursor-pointer hover:text-cyan-500">
-              <NuxtLink to="/quizzes">Quizzes</NuxtLink>
+              <NuxtLink to="/quizzes">{{ $t("quizzes.name") }} </NuxtLink>
             </li>
             <li v-if="!isGuest" class="cursor-pointer hover:text-cyan-500">
-              <NuxtLink to="/profile">Profile</NuxtLink>
+              <NuxtLink to="/profile">{{ $t("profile.name") }} </NuxtLink>
             </li>
           </ul>
 
           <div>
+            <select v-model="locale" class="mr-3">
+              <option value="en">en</option>
+              <option value="de">de</option>
+            </select>
             <NuxtLink
               v-if="isGuest"
               class="cursor-pointer hover:text-cyan-500"
               to="/signIn"
-              >Sign in
+              >{{ $t("signIn.name") }}
             </NuxtLink>
 
             <button
@@ -39,14 +44,14 @@ const isAdmin = computed(() => user.admin);
               class="cursor-pointer hover:text-cyan-500"
               @click="signOut()"
             >
-              Logout
+              {{ $t("logout") }}
             </button>
 
             <NuxtLink
               v-if="isAdmin"
               class="cursor-pointer hover:text-cyan-500 ml-5"
               to="/admin"
-              >Admin</NuxtLink
+              >{{ $t("admin.name") }}</NuxtLink
             >
           </div>
         </nav>

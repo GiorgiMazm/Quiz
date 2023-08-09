@@ -48,18 +48,18 @@ function getOptionColor(option: string) {
           class="bg-amber-600 hover:bg-sky-400 px-4 py-2 rounded-xl mt-4 text-2xl"
           @click="endQuiz"
         >
-          End quiz
+          {{ $t("endQuiz") }}
         </button>
         <h1>{{ question?.title }}?</h1>
         <div class="flex justify-between items-center py-4">
-          <p>Question {{ questionId }}/{{ quiz.questionAmount }}</p>
+          <p>{{ $t("question") }} {{ questionId }}/{{ quiz.questionAmount }}</p>
           <img :src="question?.image" :alt="question.title" class="h-72" />
-          <p>{{ correctAnswerCounter }} correct</p>
+          <p>{{ correctAnswerCounter }} {{ $t("answeredCorrectly") }}</p>
         </div>
         <h2 v-if="isAnswered">
-          <span v-if="!isCorrectAnswerChosen">You are wrong! </span>
-          <span v-if="isCorrectAnswerChosen">You are right! </span> The right
-          answer was:
+          <span v-if="!isCorrectAnswerChosen">{{ $t("wrong") }} </span>
+          <span v-if="isCorrectAnswerChosen">{{ $t("correct") }} </span>
+          {{ $t("correctWas") }}:
           <span class="text-yellow-400 underline">{{
             question.correctOption
           }}</span>
@@ -68,7 +68,7 @@ function getOptionColor(option: string) {
             :to="getNextQuestionLink"
             class="ml-4 hover:bg-amber-600 bg-red-600 rounded-xl px-2"
           >
-            next question
+            {{ $t("nextQuestion") }}
           </NuxtLink>
         </h2>
         <div class="flex flex-wrap justify-center">

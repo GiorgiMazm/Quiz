@@ -24,16 +24,18 @@ onBeforeMount(async () => {
   <div>
     <section>
       <div class="mx-auto container">
-        <h1 class="text-5xl font-bold text-center pt-20">Your Profile</h1>
+        <h1 class="text-5xl font-bold text-center pt-20">
+          {{ $t("profile.title") }}
+        </h1>
         <div class="text-xl">
           <p v-if="user.image">
             <img class="h-44" :src="user.image" alt="avatar" />
           </p>
-          <p class="pt-5">Name: {{ user.name }}</p>
-          <p class="pt-5">Email: {{ user.email }}</p>
+          <p class="pt-5">{{ $t("name") }}: {{ user.name }}</p>
+          <p class="pt-5">{{ $t("email") }}: {{ user.email }}</p>
 
           <div v-if="!user.image" class="pt-5">
-            Your Quizzes:
+            {{ $t("profile.userQuizzes") }}:
             <ul v-for="quiz in quizzes">
               <li
                 class="mx-5 mt-2 text-red-600 hover:text-cyan-400 inline-block"
