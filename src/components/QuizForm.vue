@@ -13,6 +13,9 @@ const props = defineProps({
 });
 const emit = defineEmits();
 
+const { t } = useI18n();
+const { getCurrentUser } = await useUser();
+
 const questions = ref<Array<Question>>(props.quizData?.questionList || []);
 const formData = reactive({
   name: props.quizData?.name || "",
@@ -30,22 +33,22 @@ function validateQuestions() {
   let result = true;
   questions.value.some((question) => {
     if (question.title.trim() === "") {
-      isQuestionValid.errorMessage = "Title is required";
+      isQuestionValid.errorMessage = t("quizForm.error.title");
       result = false;
       return;
     } else if (
       question.options.length !== 4 ||
       question.options.some((option) => option.trim() === "")
     ) {
-      isQuestionValid.errorMessage = "All 4 options must be filled";
+      isQuestionValid.errorMessage = t("quizForm.error.options");
       result = false;
       return;
     } else if (question.correctOption.trim() === "") {
-      isQuestionValid.errorMessage = "Correct option is required";
+      isQuestionValid.errorMessage = t("quizForm.error.correctOption");
       result = false;
       return;
     } else if (question.image.trim() === "") {
-      isQuestionValid.errorMessage = "Image is required";
+      isQuestionValid.errorMessage = t("quizForm.error.image");
       result = false;
       return;
     }
@@ -59,9 +62,7 @@ const isQuestionValid = reactive({
   isValid: true,
 }) as ValidationError;
 
-const { getCurrentUser } = await useUser();
 const user = (await getCurrentUser()) as unknown as User;
-
 const QuizCategoryList = Object.values(QuizCategory).filter(
   (category) => category !== "All"
 );
@@ -96,41 +97,41 @@ function createQuizListener() {
 <template>
   <form>
     <div class="mt-5">
-      <label>Quiz name</label>
+      <label>{{ $t("quizForm.name") }}</label>
       <input
         class="ml-2 px-2 py-1 rounded-xl w-3/5"
         type="text"
-        placeholder="Name"
+        :placeholder="$t('quizForm.placeholder.quiz')"
         v-model="formData.name"
       />
-      <span class="text-red-600 pb-3 ml-3" v-if="validation.name.$invalid"
-        >Name is required</span
-      >
+      <span class="text-red-600 pb-3 ml-3" v-if="validation.name.$invalid">{{
+        $t("quizForm.error.name")
+      }}</span>
     </div>
 
     <div class="mt-5 flex">
-      <label>Description</label>
+      <label>{{ $t("quizForm.description") }}</label>
       <textarea
         class="ml-2 px-2 py-1 rounded-xl w-3/5"
-        placeholder="Description"
+        :placeholder="$t('quizForm.placeholder.description')"
         v-model="formData.description"
       />
       <span
         class="text-red-600 pb-3 ml-3"
         v-if="validation.description.$invalid"
-        >Description is required</span
+        >{{ $t("quizForm.error.description") }}</span
       >
     </div>
 
     <div>
-      <label>Category</label>
+      <label>{{ $t("quizForm.category") }}</label>
       <select
         v-model="formData.category"
         name="category"
         class="ml-3 mb-3 mt-5"
       >
         <option v-for="category in QuizCategoryList" :value="category">
-          {{ category }}
+          {{ $t(`category.${category.toLowerCase()}`) }}
         </option>
       </select>
     </div>
@@ -145,64 +146,64 @@ function createQuizListener() {
       />
       <div>
         <p class="text-red-600 pb-3 ml-3" v-if="!isQuestionValid.isValid">
-          Question is not valid: {{ isQuestionValid.errorMessage }}
+          {{ $t("quizForm.error.question") }} {{ isQuestionValid.errorMessage }}
         </p>
-        <label>Question</label>
+        <label>{{ $t("quizForm.question") }}</label>
         <input
           class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
           type="text"
-          placeholder="Title"
+          :placeholder="$t('quizForm.placeholder.question')"
           v-model="question.title"
           @keyup="validateQuestions"
         />
       </div>
 
       <div>
-        <label>Option 1</label>
+        <label>{{ $t("quizForm.option") }} 1</label>
         <input
           class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
           type="text"
-          placeholder="First option"
+          :placeholder="$t('quizForm.placeholder.firstOption')"
           v-model="question.options[0]"
           @keyup="validateQuestions"
         />
       </div>
 
       <div>
-        <label>Option 2</label>
+        <label>{{ $t("quizForm.option") }} 2</label>
         <input
           class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
           type="text"
-          placeholder="Second option"
+          :placeholder="$t('quizForm.placeholder.secondOption')"
           v-model="question.options[1]"
           @keyup="validateQuestions"
         />
       </div>
 
       <div>
-        <label>Option 3</label>
+        <label>{{ $t("quizForm.option") }} 3</label>
         <input
           class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
           type="text"
-          placeholder="Third option"
+          :placeholder="$t('quizForm.placeholder.thirdOption')"
           v-model="question.options[2]"
           @keyup="validateQuestions"
         />
       </div>
 
       <div>
-        <label>Option 4</label>
+        <label>{{ $t("quizForm.option") }} 4</label>
         <input
           class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
           type="text"
-          placeholder="Fourth option"
+          :placeholder="$t('quizForm.placeholder.fourthOption')"
           v-model="question.options[3]"
           @keyup="validateQuestions"
         />
       </div>
 
       <div>
-        <label>Correct</label>
+        <label>{{ $t("quizForm.correct") }}</label>
         <select
           name="correctAnswer"
           v-model="question.correctOption"
@@ -217,31 +218,32 @@ function createQuizListener() {
 
       <div>
         <p v-if="question.image">
-          Image
+          {{ $t("quizForm.image") }}
           <img class="h-44" :src="question?.image" :alt="question.title" />
         </p>
-        <label>Upload image</label>
+        <label>{{ $t("quizForm.uploadImage") }}</label>
         <input
           class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
           type="file"
-          placeholder="Image url"
           accept="jpg, png, jpeg"
           @change="(event) => { convertImage((event.target as HTMLInputElement).files![0] as unknown as Blob, question as Question, validateQuestions);}"
         />
       </div>
     </div>
-    <button @click.prevent="addQuestion">Add question</button>
+    <button @click.prevent="addQuestion">
+      {{ $t("quizForm.addQuestion") }}
+    </button>
     <br />
     <button
       class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
       @click.prevent="createQuizListener"
     >
-      Save
+      {{ $t("quizForm.submit") }}
     </button>
     <NuxtLink
       class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
       to="/quizzes"
-      >Back</NuxtLink
+      >{{ $t("quizForm.cancel") }}</NuxtLink
     >
   </form>
 </template>
