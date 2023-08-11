@@ -1,5 +1,6 @@
 import de from "~~/translations/de";
 import en from "~~/translations/en";
+import ru from "~~/translations/ru";
 
 export default defineI18nConfig(() => ({
   legacy: false,
@@ -7,5 +8,6 @@ export default defineI18nConfig(() => ({
   messages: {
     ...de,
     ...en,
+    ...ru,
   },
 }));

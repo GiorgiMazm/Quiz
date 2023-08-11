@@ -31,6 +31,7 @@ const isAdmin = computed(() => user.admin);
             <select v-model="locale" class="mr-3">
               <option value="en">en</option>
               <option value="de">de</option>
+              <option value="ru">ru</option>
             </select>
             <NuxtLink
               v-if="isGuest"
