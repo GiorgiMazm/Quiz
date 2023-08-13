@@ -8,6 +8,10 @@ useHead({
       name: "description",
       content: "My quiz app",
     },
+    {
+      name: "theme-color",
+      content: "#RRGGBB",
+    },
   ],
   link: [{ rel: "manifest", href: "manifest.json" }],
 });
