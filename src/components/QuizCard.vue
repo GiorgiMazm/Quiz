@@ -23,7 +23,9 @@ const canUserInteract = computed(() => {
 </script>
 
 <template>
-  <div class="flex w-[50%] justify-between border-2 my-2 p-3">
+  <div
+    class="flex w-full md:w-[75%] lg:w-[50%] justify-between border-2 my-2 p-3"
+  >
     <p>{{ props.quiz.name }}</p>
     <p>{{ $t("quizzes.questionAmount") }} {{ props.quiz.questionAmount }}</p>
     <NuxtLink class="hover:text-red-600" :to="quizLink">{{

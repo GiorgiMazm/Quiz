@@ -22,7 +22,7 @@ function chooseOption() {
 
 <template>
   <div
-    class="w-[46%] text-center font-bold text-4xl text-gray-300 m-2 py-4 cursor-pointer"
+    class="w-full sm:w-[46%] text-center font-bold text-4xl text-gray-300 m-2 py-4 cursor-pointer"
     @click.once="
       chooseOption();
       $emit('answered', isCorrectChosen);

@@ -12,7 +12,7 @@ const pageLink = `/quiz-${route.params.id}/question-1`;
   <div>
     <section>
       <div class="container mx-auto">
-        <div v-if="quiz" class="pt-9 text-cyan-800">
+        <div v-if="quiz" class="pt-9 text-cyan-800 text-center sm:text-left">
           <h1 class="text-4xl font-bold">{{ $t("quiz") }}: {{ quiz.name }}</h1>
           <h2 class="text-2xl py-4">
             {{ $t("description") }}: {{ quiz.description }}
@@ -21,7 +21,7 @@ const pageLink = `/quiz-${route.params.id}/question-1`;
             {{ $t("questions") }}: {{ quiz.questionAmount }}
           </p>
           <NuxtLink
-            class="py-3 px-4 bg-sky-400 mt-3 inline-block hover:bg-red-600 hover:text-black"
+            class="py-6 px-12 mb-5 w-full sm:w-auto bg-sky-400 mt-3 inline-block hover:bg-red-600 hover:text-black"
             :to="pageLink"
             >{{ $t("start") }}</NuxtLink
           >

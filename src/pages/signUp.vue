@@ -40,11 +40,11 @@ async function signUp() {
 
 <template>
   <div>
-    <section class="bg-emerald-600 py-24">
+    <section class="bg-emerald-600 md:py-24">
       <div class="container mx-auto">
         <form
           @submit.prevent="signUp"
-          class="bg-white rounded-xl p-12 text-center w-3/5 mx-auto text-gray-700 min-w-[400px]"
+          class="bg-white rounded-xl p-12 text-center w-full lg:w-3/5 mx-auto text-gray-700"
         >
           <h1 class="pt-10 text-5xl font-bold">{{ $t("signUp.title") }}</h1>
 
@@ -53,7 +53,7 @@ async function signUp() {
               {{ $t("nameInvalid") }}
             </p>
             <input
-              class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
+              class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-full md:w-4/5"
               type="text"
               :placeholder="$t('name')"
               v-model="formData.name"
@@ -68,7 +68,7 @@ async function signUp() {
               {{ $t("passwordInvalid") }}
             </p>
             <input
-              class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
+              class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-full md:w-4/5"
               type="password"
               :placeholder="$t('password')"
               v-model="formData.password"
@@ -80,7 +80,7 @@ async function signUp() {
               {{ $t("emailInvalid") }}
             </p>
             <input
-              class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-4/5"
+              class="ml-2 px-10 py-6 border-2 border-gray-900 border-opacity-10 inline-block mt-8 w-full md:w-4/5"
               type="email"
               :placeholder="$t('email')"
               v-model="formData.email"
@@ -88,7 +88,7 @@ async function signUp() {
           </div>
 
           <button
-            class="mt-9 rounded-xl px-32 py-6 bg-green-700 hover:bg-emerald-600 hover:text-white"
+            class="mt-9 mr-5 rounded-xl px-28 sm:px-32 py-3 sm:py-7 bg-green-700 hover:bg-emerald-600 hover:text-white"
           >
             {{ $t("signUp.submit") }}
           </button>

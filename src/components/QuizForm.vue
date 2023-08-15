@@ -99,25 +99,27 @@ function createQuizListener() {
     <div class="mt-5">
       <label>{{ $t("quizForm.name") }}</label>
       <input
-        class="ml-2 px-2 py-1 rounded-xl w-3/5"
+        class="sm:ml-2 px-2 py-1 rounded-xl sm:w-3/5 w-full"
         type="text"
         :placeholder="$t('quizForm.placeholder.quiz')"
         v-model="formData.name"
       />
-      <span class="text-red-600 pb-3 ml-3" v-if="validation.name.$invalid">{{
-        $t("quizForm.error.name")
-      }}</span>
+      <span
+        class="text-red-600 pb-3 ml-3 block mt-3 md:inline"
+        v-if="validation.name.$invalid"
+        >{{ $t("quizForm.error.name") }}</span
+      >
     </div>
 
-    <div class="mt-5 flex">
+    <div class="mt-5">
       <label>{{ $t("quizForm.description") }}</label>
       <textarea
-        class="ml-2 px-2 py-1 rounded-xl w-3/5"
+        class="sm:ml-2 px-2 py-1 rounded-xl sm:w-3/5 w-full"
         :placeholder="$t('quizForm.placeholder.description')"
         v-model="formData.description"
       />
       <span
-        class="text-red-600 pb-3 ml-3"
+        class="text-red-600 pb-3 ml-3 block mt-3 md:inline"
         v-if="validation.description.$invalid"
         >{{ $t("quizForm.error.description") }}</span
       >
@@ -150,7 +152,7 @@ function createQuizListener() {
         </p>
         <label>{{ $t("quizForm.question") }}</label>
         <input
-          class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
+          class="ml-2 px-2 py-1 rounded-xl mb-3 md:w-3/5 w-full"
           type="text"
           :placeholder="$t('quizForm.placeholder.question')"
           v-model="question.title"
@@ -161,7 +163,7 @@ function createQuizListener() {
       <div>
         <label>{{ $t("quizForm.option") }} 1</label>
         <input
-          class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
+          class="ml-2 px-2 py-1 rounded-xl mb-3 md:w-3/5 w-full"
           type="text"
           :placeholder="$t('quizForm.placeholder.firstOption')"
           v-model="question.options[0]"
@@ -172,7 +174,7 @@ function createQuizListener() {
       <div>
         <label>{{ $t("quizForm.option") }} 2</label>
         <input
-          class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
+          class="ml-2 px-2 py-1 rounded-xl mb-3 md:w-3/5 w-full"
           type="text"
           :placeholder="$t('quizForm.placeholder.secondOption')"
           v-model="question.options[1]"
@@ -183,7 +185,7 @@ function createQuizListener() {
       <div>
         <label>{{ $t("quizForm.option") }} 3</label>
         <input
-          class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
+          class="ml-2 px-2 py-1 rounded-xl mb-3 md:w-3/5 w-full"
           type="text"
           :placeholder="$t('quizForm.placeholder.thirdOption')"
           v-model="question.options[2]"
@@ -194,7 +196,7 @@ function createQuizListener() {
       <div>
         <label>{{ $t("quizForm.option") }} 4</label>
         <input
-          class="ml-2 px-2 py-1 rounded-xl mb-3 w-3/5"
+          class="ml-2 px-2 py-1 rounded-xl mb-3 md:w-3/5 w-full"
           type="text"
           :placeholder="$t('quizForm.placeholder.fourthOption')"
           v-model="question.options[3]"
@@ -233,17 +235,18 @@ function createQuizListener() {
     <button @click.prevent="addQuestion">
       {{ $t("quizForm.addQuestion") }}
     </button>
-    <br />
-    <button
-      class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
-      @click.prevent="createQuizListener"
-    >
-      {{ $t("quizForm.submit") }}
-    </button>
-    <NuxtLink
-      class="mx-3 py-3 px-4 bg-amber-500 mt-3 inline-block hover:bg-red-600 rounded-l"
-      to="/quizzes"
-      >{{ $t("quizForm.cancel") }}</NuxtLink
-    >
+    <div class="flex flex-wrap justify-center">
+      <button
+        class="mx-4 py-5 bg-amber-500 mt-8 sm:mt-3 inline-block hover:bg-red-600 rounded-l w-4/5 sm:w-40"
+        @click.prevent="createQuizListener"
+      >
+        {{ $t("quizForm.submit") }}
+      </button>
+      <NuxtLink
+        class="mx-4 py-5 px-4 bg-amber-500 mt-8 sm:mt-3 inline-block hover:bg-red-600 rounded-l w-4/5 sm:w-40 text-center"
+        to="/quizzes"
+        >{{ $t("quizForm.cancel") }}</NuxtLink
+      >
+    </div>
   </form>
 </template>

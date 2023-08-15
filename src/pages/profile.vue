@@ -23,13 +23,13 @@ onBeforeMount(async () => {
 <template>
   <div>
     <section>
-      <div class="mx-auto container">
+      <div class="mx-auto container text-center sm:text-left">
         <h1 class="text-5xl font-bold text-center pt-20">
           {{ $t("profile.title") }}
         </h1>
         <div class="text-xl">
-          <p v-if="user.image">
-            <img class="h-44" :src="user.image" alt="avatar" />
+          <p v-if="user.image" class="flex justify-center sm:justify-normal">
+            <img class="h-44 mt-5" :src="user.image" alt="avatar" />
           </p>
           <p class="pt-5">{{ $t("name") }}: {{ user.name }}</p>
           <p class="pt-5">{{ $t("email") }}: {{ user.email }}</p>

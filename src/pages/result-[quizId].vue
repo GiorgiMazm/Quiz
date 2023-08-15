@@ -18,17 +18,17 @@ if (
   <div>
     <section>
       <div class="container mx-auto text-center">
-        <h1 class="text-6xl pt-44">
+        <h1 class="text-4xl md:text-6xl pt-44">
           {{ $t("result.title") }} "{{ quiz.name }}"
         </h1>
-        <h2 class="text-4xl">
+        <h2 class="text-3xl md:text-4xl text-indigo-700 font-bold mt-5">
           {{ $t("result.userHas") }} {{ route.query.correct }} /
           {{ quiz.questionAmount }}
           {{ $t("result.right") }}
         </h2>
         <NuxtLink
           to="/quizzes"
-          class="bg-sky-600 py-4 px-7 rounded-xl mt-7 inline-block text-xl hover:bg-sky-400 cursor-pointer"
+          class="bg-sky-600 py-4 px-7 rounded-xl mt-2 mb-2 sm:mt-7 inline-block text-xl hover:bg-sky-400 cursor-pointer"
           >{{ $t("result.redirect") }}</NuxtLink
         >
       </div>

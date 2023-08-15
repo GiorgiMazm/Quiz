@@ -51,7 +51,7 @@ function getOptionColor(option: string) {
           {{ $t("endQuiz") }}
         </button>
         <h1>{{ question?.title }}?</h1>
-        <div class="flex justify-between items-center py-4">
+        <div class="flex justify-between items-center py-4 flex-wrap">
           <p>{{ $t("question") }} {{ questionId }}/{{ quiz.questionAmount }}</p>
           <img :src="question?.image" :alt="question.title" class="h-72" />
           <p>{{ correctAnswerCounter }} {{ $t("answeredCorrectly") }}</p>
@@ -66,7 +66,7 @@ function getOptionColor(option: string) {
           <NuxtLink
             v-if="!isLastQuestion"
             :to="getNextQuestionLink"
-            class="ml-4 hover:bg-amber-600 bg-red-600 rounded-xl px-2"
+            class="ml-4 hover:bg-amber-600 bg-yellow-600 rounded-xl px-2 py-4 inline-block my-4"
           >
             {{ $t("nextQuestion") }}
           </NuxtLink>
