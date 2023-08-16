@@ -19,7 +19,7 @@ useHead({
 <template>
   <div>
     <AppHeader />
-    <NuxtPage class="min-h-[80vh]" />
+    <NuxtPage class="min-h-[80vh] pt-[10vh] sm:p-0" />
     <AppFooter />
   </div>
 </template>
